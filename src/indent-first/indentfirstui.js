@@ -4,7 +4,7 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import alignRightIcon from './icons/indentFirst.svg';
+import alignRightIcon from '../../theme/indent-first/icons/indentFirst.svg';
 
 export default class IndentFirstUi extends Plugin {
 	/**
