@@ -46,7 +46,9 @@
     "npm": ">=5.7.1"
   },
   "files": [
-    "src"
+    "src",
+    "lang",
+    "theme"
   ],
   "lint-staged": {
     "**/*.js": [
