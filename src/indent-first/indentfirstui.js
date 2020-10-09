@@ -8,20 +8,20 @@ import alignRightIcon from './icons/action-indent2em.svg';
 
 export default class IndentFirstUi extends Plugin {
 	/**
-   * @inheritDoc
-   */
+	 * @inheritDoc
+	 */
 	static get pluginName() {
 		return 'IndentFirstUI';
 	}
 
 	/**
-   * @inheritDoc
-   */
+	 * @inheritDoc
+	 */
 	init() {
 		const editor = this.editor;
 
-		editor.ui.componentFactory.add( 'indent-first', locale => {
-			const command = editor.commands.get( 'indent-first' );
+		editor.ui.componentFactory.add( 'indentFirst', locale => {
+			const command = editor.commands.get( 'indentFirst' );
 			const buttonView = new ButtonView( locale );
 
 			buttonView.set( {
@@ -35,7 +35,7 @@ export default class IndentFirstUi extends Plugin {
 
 			// Execute command.
 			this.listenTo( buttonView, 'execute', () => {
-				editor.execute( 'indent-first' );
+				editor.execute( 'indentFirst' );
 				editor.editing.view.focus();
 			} );
 

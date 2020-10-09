@@ -4,7 +4,7 @@
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import first from '@ckeditor/ckeditor5-utils/src/first';
 
-const INDENT_FIRST = 'indent-first';
+const INDENT_FIRST = 'indentFirst';
 
 /**
  * The indent-first command plugin.
@@ -13,8 +13,8 @@ const INDENT_FIRST = 'indent-first';
  */
 export default class IndentFirstCommand extends Command {
 	/**
-   * @inheritDoc
-   */
+	 * @inheritDoc
+	 */
 	refresh() {
 		const firstBlock = first( this.editor.model.document.selection.getSelectedBlocks() );
 		this.isEnabled = !!firstBlock && this._canBeAligned( firstBlock );
@@ -28,8 +28,8 @@ export default class IndentFirstCommand extends Command {
 	}
 
 	/**
-   * @inheritDoc
-   */
+	 * @inheritDoc
+	 */
 	execute() {
 	// execute(options = {}) {
 		const editor = this.editor;
@@ -64,8 +64,8 @@ function removeFromSelection( blocks, writer ) {
 
 // Sets the indent-first attribute on blocks.
 // @private
-function setIndentOnSelection( blocks, writer, indentfirst ) {
+function setIndentOnSelection( blocks, writer, plug ) {
 	for ( const block of blocks ) {
-		writer.setAttribute( INDENT_FIRST, indentfirst, block );
+		writer.setAttribute( INDENT_FIRST, plug, block );
 	}
 }

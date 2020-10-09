@@ -7,44 +7,44 @@ import IndentFirstCommand from './indentfirstcommand';
 
 export default class IndentFirstEditing extends Plugin {
 	/**
-   * @inheritDoc
-   */
+	 * @inheritDoc
+	 */
 	static get pluginName() {
 		return 'IndentFirstEditing';
 	}
 
 	/**
-   * @inheritDoc
-   */
+	 * @inheritDoc
+	 */
 	constructor( editor ) {
 		super( editor );
 
-		editor.config.define( 'indentValue', '2em' );
+		editor.config.define( 'indentFirstValue', '2em' );
 	}
 
 	/**
-   * @inheritDoc
-   */
+	 * @inheritDoc
+	 */
 	init() {
 		const editor = this.editor;
 		const schema = editor.model.schema;
 
-		const indentValue = editor.config.get( 'indentValue' );
+		const indentFirstValue = editor.config.get( 'indentFirstValue' );
 
-		// Allow indent-first attribute on all blocks.
-		schema.extend( '$block', { allowAttributes: 'indent-first' } );
-		editor.model.schema.setAttributeProperties( 'indent-first', { isFormatting: true } );
+		// Allow indentFirst attribute on all blocks.
+		schema.extend( '$block', { allowAttributes: 'indentFirst' } );
+		editor.model.schema.setAttributeProperties( 'indentFirst', { isFormatting: true } );
 
 		const definition = {
 			model: {
-				key: 'indent-first',
-				values: [ 'indent-first' ]
+				key: 'indentFirst',
+				values: [ 'indentFirst' ]
 			},
 			view: {
-				'indent-first': {
+				indentFirst: {
 					key: 'style',
 					value: {
-						'indent-first': indentValue
+						'text-indent': indentFirstValue
 						// , width: '50%'
 						// , margin: '5px'
 					}
@@ -54,6 +54,6 @@ export default class IndentFirstEditing extends Plugin {
 
 		editor.conversion.attributeToAttribute( definition );
 
-		editor.commands.add( 'indent-first', new IndentFirstCommand( editor ) );
+		editor.commands.add( 'indentFirst', new IndentFirstCommand( editor ) );
 	}
 }

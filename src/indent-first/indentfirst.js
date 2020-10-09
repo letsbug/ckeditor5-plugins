@@ -9,15 +9,15 @@ import IndentFirstUi from './indentfirstui';
 
 export default class IndentFirst extends Plugin {
 	/**
-   * @inheritDoc
-   */
+	 * @inheritDoc
+	 */
 	static get requires() {
 		return [ IndentFirstEditing, IndentFirstUi ];
 	}
 
 	/**
-   * @inheritDoc
-   */
+	 * @inheritDoc
+	 */
 	static get pluginName() {
 		return 'IndentFirst';
 	}
