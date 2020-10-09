@@ -1,0 +1,66 @@
+{
+  "name": "ckeditor5-plugins",
+  "version": "1.0.0",
+  "description": "custom ckeditor5 plugins (eg: indent first line, custom format, ad so on...)",
+  "main": ".eslingrc.js",
+  "scripts": {
+    "lint": "eslint --quiet '**/*.js' --fix",
+    "stylelint": "stylelint --quiet --allow-empty-input 'theme/**/*.css' 'docs/**/*.css'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/letsbug/ckeditor5-plugins.git"
+  },
+  "keywords": [
+    "ckeditor5",
+    "plugin",
+    "indent",
+    "first",
+    "custom",
+    "format"
+  ],
+  "author": "letsbug",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/letsbug/ckeditor5-plugins/issues"
+  },
+  "homepage": "https://github.com/letsbug/ckeditor5-plugins#readme",
+  "dependencies": {
+    "@ckeditor/ckeditor5-core": "^23.0.0",
+    "@ckeditor/ckeditor5-engine": "^23.0.0",
+    "@ckeditor/ckeditor5-ui": "^23.0.0"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-utils": "^23.0.0",
+    "eslint": "^7.10.0",
+    "eslint-config-ckeditor5": "^3.1.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "stylelint": "^13.7.2",
+    "stylelint-config-ckeditor5": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.7.1"
+  },
+  "files": [
+    "src"
+  ],
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --quiet"
+    ],
+    "**/*.css": [
+      "stylelint --quiet --allow-empty-input"
+    ]
+  },
+  "eslintIgnore": [
+    "src/lib/**",
+    "packages/**"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
