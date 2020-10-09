@@ -19,6 +19,6 @@ export default class IndentFirst extends Plugin {
    * @inheritDoc
    */
 	static get pluginName() {
-		return 'TextIndent';
+		return 'IndentFirst';
 	}
 }

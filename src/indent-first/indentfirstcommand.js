@@ -38,13 +38,13 @@ export default class IndentFirstCommand extends Command {
 
 		model.change( writer => {
 			const blocks = Array.from( doc.selection.getSelectedBlocks() ).filter( block => this._canBeAligned( block ) );
-			const currentTextIndent = blocks[ 0 ].getAttribute( INDENT_FIRST );
-			const removeTextIndent = currentTextIndent === INDENT_FIRST || !INDENT_FIRST;
+			const currentIndent = blocks[ 0 ].getAttribute( INDENT_FIRST );
+			const removeIndent = currentIndent === INDENT_FIRST || !INDENT_FIRST;
 
-			if ( removeTextIndent ) {
-				removeTextIndentFromSelection( blocks, writer );
+			if ( removeIndent ) {
+				removeFromSelection( blocks, writer );
 			} else {
-				setTextIndentOnSelection( blocks, writer, INDENT_FIRST );
+				setIndentOnSelection( blocks, writer, INDENT_FIRST );
 			}
 		} );
 	}
@@ -56,7 +56,7 @@ export default class IndentFirstCommand extends Command {
 
 // Removes the indent-first attribute from blocks.
 // @private
-function removeTextIndentFromSelection( blocks, writer ) {
+function removeFromSelection( blocks, writer ) {
 	for ( const block of blocks ) {
 		writer.removeAttribute( INDENT_FIRST, block );
 	}
@@ -64,7 +64,7 @@ function removeTextIndentFromSelection( blocks, writer ) {
 
 // Sets the indent-first attribute on blocks.
 // @private
-function setTextIndentOnSelection( blocks, writer, indentfirst ) {
+function setIndentOnSelection( blocks, writer, indentfirst ) {
 	for ( const block of blocks ) {
 		writer.setAttribute( INDENT_FIRST, indentfirst, block );
 	}

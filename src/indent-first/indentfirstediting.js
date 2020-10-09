@@ -10,7 +10,7 @@ export default class IndentFirstEditing extends Plugin {
    * @inheritDoc
    */
 	static get pluginName() {
-		return 'TextIndentEditing';
+		return 'IndentFirstEditing';
 	}
 
 	/**
@@ -44,7 +44,7 @@ export default class IndentFirstEditing extends Plugin {
 				'indent-first': {
 					key: 'style',
 					value: {
-						'text-indent': indentValue
+						'indent-first': indentValue
 						// , width: '50%'
 						// , margin: '5px'
 					}
