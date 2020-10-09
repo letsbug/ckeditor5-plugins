@@ -24,6 +24,9 @@
   "bugs": {
     "url": "https://github.com/letsbug/ckeditor5-plugins/issues"
   },
+  "publishConfig": {
+    "registry": "http://10.3.196.23:8081/repository/npm-hosted/"
+  },
   "homepage": "https://github.com/letsbug/ckeditor5-plugins#readme",
   "dependencies": {
     "@ckeditor/ckeditor5-core": "^23.0.0",
