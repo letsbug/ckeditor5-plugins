@@ -4,7 +4,7 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import alignRightIcon from '../../theme/indent-first/icons/indentFirst.svg';
+import alignRightIcon from '../../theme/icons/indentFirst.svg';
 
 export default class IndentFirstUi extends Plugin {
 	/**
@@ -20,26 +20,26 @@ export default class IndentFirstUi extends Plugin {
 	init() {
 		const editor = this.editor;
 
-		editor.ui.componentFactory.add( 'indentFirst', locale => {
-			const command = editor.commands.get( 'indentFirst' );
-			const buttonView = new ButtonView( locale );
+		editor.ui.componentFactory.add('indentFirst', (locale) => {
+			const command = editor.commands.get('indentFirst');
+			const buttonView = new ButtonView(locale);
 
-			buttonView.set( {
+			buttonView.set({
 				label: '首行缩进',
 				icon: alignRightIcon,
 				tooltip: true,
-				isToggleable: true
-			} );
+				isToggleable: true,
+			});
 
-			buttonView.bind( 'isOn', 'isEnabled' ).to( command, 'value', 'isEnabled' );
+			buttonView.bind('isOn', 'isEnabled').to(command, 'value', 'isEnabled');
 
 			// Execute command.
-			this.listenTo( buttonView, 'execute', () => {
-				editor.execute( 'indentFirst' );
+			this.listenTo(buttonView, 'execute', () => {
+				editor.execute('indentFirst');
 				editor.editing.view.focus();
-			} );
+			});
 
 			return buttonView;
-		} );
+		});
 	}
 }

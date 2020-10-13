@@ -8,5 +8,18 @@
 'use strict';
 
 module.exports = {
-	extends: 'ckeditor5'
+	env: {
+		browser: true,
+		node: true,
+	},
+	parserOptions: {
+		ecmaVersion: 2020,
+		sourceType: 'module',
+	},
+	extends: ['eslint:recommended', 'prettier'],
+	plugins: ['prettier'],
+	rules: {
+		'prettier/prettier': ['error'],
+		'no-useless-constructor': 'off',
+	},
 };

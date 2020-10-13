@@ -1,4 +1,3 @@
-
 /**
  * @module indent-first/indentfirst
  */
@@ -12,7 +11,7 @@ export default class IndentFirst extends Plugin {
 	 * @inheritDoc
 	 */
 	static get requires() {
-		return [ IndentFirstEditing, IndentFirstUi ];
+		return [IndentFirstEditing, IndentFirstUi];
 	}
 
 	/**
