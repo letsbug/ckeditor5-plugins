@@ -45,13 +45,10 @@ export default class LineHeightUI extends Plugin {
 
 	_getLocalizedOptions() {
 		const editor = this.editor;
-		const t = editor.t;
-
 		const localizedTitles = {
 			// Default: 'Standard'
-			Default: t('Default'),
+			Default: '标准',
 		};
-
 		const options = normalizeOptions(editor.config.get('lineHeight.options').filter((option) => isSupported(option)));
 
 		return options.map((option) => {

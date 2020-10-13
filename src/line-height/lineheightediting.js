@@ -2,7 +2,7 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import { isSupported, buildDefinition } from './utils';
 import LineHeightCommand from './lineheightcommand';
 
-export default class LineHightEditing extends Plugin {
+export default class LineHeightEditing extends Plugin {
 	constructor(editor) {
 		super(editor);
 
