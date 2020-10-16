@@ -1,8 +1,8 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import { addToolbarToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
 import { isSupported } from './utils';
-import OutsideCallsIcon from '../../theme/icons/outsideCalls.svg';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
+import OutsideCallsIcon from '../../theme/icons/outsideCalls.svg';
 
 export default class OutsideCallsUI extends Plugin {
 	static get pluginName() {
@@ -13,21 +13,17 @@ export default class OutsideCallsUI extends Plugin {
 		const editor = this.editor;
 		const factory = editor.ui.componentFactory;
 		const _options = editor.config.get('outsideCalls.options');
-		if (!(_options instanceof Array)) {
-			return;
-		}
-
-		const options = _options.filter(isSupported);
-		if (options.length < 1) {
-			return;
-		}
+		const options = _options instanceof Array ? _options.filter(isSupported) : [];
 
 		options.forEach((o) => this._addItemButton(o));
 
 		factory.add('outsideCalls', (locale) => {
 			const dropdown = createDropdown(locale);
-			const items = options.map((o) => factory.create(`outsideCalls:${o.name}`));
-			addToolbarToDropdown(dropdown, items);
+
+			if (options.length > 0) {
+				const items = options.map((o) => factory.create(`outsideCalls:${o.name}`));
+				addToolbarToDropdown(dropdown, items);
+			}
 
 			dropdown.buttonView.set({
 				label: '扩展功能',
