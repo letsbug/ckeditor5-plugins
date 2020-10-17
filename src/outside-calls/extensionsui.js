@@ -51,7 +51,7 @@ export default class ExtensionsUI extends Plugin {
 			button.set({ label, icon, tooltip: true });
 
 			this.listenTo(button, 'execute', () => {
-				if (command) command.call(editor);
+				if (command) command.call(editor, Array.from(editor.editing.view.document.selection.getSelectedElement().getChildren()));
 				else console.warn(`[${name}] extension feature no callback configuration can be executed.`);
 			});
 
