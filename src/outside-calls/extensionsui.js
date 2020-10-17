@@ -1,6 +1,5 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 // import { addToolbarToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
-import { isSupported } from './utils';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 // import OutsideCallsIcon from '../../theme/icons/outsideCalls.svg';
 
@@ -13,7 +12,7 @@ export default class ExtensionsUI extends Plugin {
 		const editor = this.editor;
 		// const factory = editor.ui.componentFactory;
 		const _options = editor.config.get('extensions');
-		const options = _options instanceof Array ? _options.filter(isSupported) : [];
+		const options = _options instanceof Array ? _options.filter((o) => o.name && typeof o.name === 'string') : [];
 
 		options.forEach((o) => this._addItemButton(o));
 
