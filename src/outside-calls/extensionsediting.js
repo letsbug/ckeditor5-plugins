@@ -1,7 +1,7 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-export default class OutsideCallsEditing extends Plugin {
+export default class ExtensionsEditing extends Plugin {
 	static get pluginName() {
-		return 'OutsideCallsEditing';
+		return 'ExtensionsEditing';
 	}
 }
