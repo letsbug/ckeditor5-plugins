@@ -36,7 +36,7 @@ function optionDefinition(option) {
 	if (option === 'default') {
 		return {
 			model: undefined,
-			title: 'Default',
+			title: '标准',
 		};
 	}
 

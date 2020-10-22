@@ -74,7 +74,7 @@ function _prepareListOptions(options, command) {
 				commandName: 'lineHeight',
 				commandParam: option.model,
 				label: option.title,
-				class: 'p0thi-ckeditor5-lineHeight-dropdown',
+				class: 'ckeditor5-lineHeight-dropdown',
 				withText: true,
 			}),
 		};
