@@ -52,8 +52,8 @@ export default class ExtensionsUI extends Plugin {
 
 			this.listenTo(button, 'execute', () => {
 				if (command) {
-					const selected = editor.editing.view.document.selection.getSelectedElement();
-					command.call(editor, selected ? Array.from(selected.getChildren()) : null);
+					const selected = editor.model.document.selection.getSelectedElement();
+					command.call(editor, selected);
 				} else console.warn(`[${name}] extension feature no callback configuration can be executed.`);
 			});
 
