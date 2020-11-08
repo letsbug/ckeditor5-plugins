@@ -1,7 +1,5 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-// import { addToolbarToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-// import OutsideCallsIcon from '../../theme/icons/outsideCalls.svg';
 
 export default class ExtensionsUI extends Plugin {
 	static get pluginName() {

@@ -4,7 +4,7 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import alignRightIcon from '../../theme/icons/indentFirst.svg';
+import indentFirst from '../../theme/icons/indent-first.svg';
 
 export default class IndentFirstUi extends Plugin {
 	/**
@@ -26,7 +26,7 @@ export default class IndentFirstUi extends Plugin {
 
 			buttonView.set({
 				label: '首行缩进',
-				icon: alignRightIcon,
+				icon: indentFirst,
 				tooltip: true,
 				isToggleable: true,
 			});
