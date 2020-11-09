@@ -2,7 +2,10 @@
  * @module indent-first/paragraphspacingui
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import { createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
+import Model from '@ckeditor/ckeditor5-ui/src/model';
+import Collection from '@ckeditor/ckeditor5-utils/src/collection';
+import { addListToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
+import { isSupported, normalizeOptions } from '../line-height/utils';
 import paragraphSpacingIcon from '../../theme/icons/paragraph-spacing.svg';
 
 export default class ParagraphSpacingUI extends Plugin {
@@ -18,10 +21,12 @@ export default class ParagraphSpacingUI extends Plugin {
 	 */
 	init() {
 		const editor = this.editor;
+		const options = this._getLocalizedOptions();
 		const command = editor.commands.get('paragraphSpacing');
 
 		editor.ui.componentFactory.add('paragraphSpacing', (locale) => {
 			const dropdown = createDropdown(locale);
+			addListToDropdown(dropdown, this._prepareListOptions(options, command));
 
 			dropdown.buttonView.set({
 				label: '段落间距',
@@ -31,7 +36,7 @@ export default class ParagraphSpacingUI extends Plugin {
 
 			dropdown.extendTemplate({
 				attributes: {
-					class: ['ckeditor5-paragraph-spacing-dropdown'],
+					class: ['ck-paragraph-spacing-dropdown'],
 				},
 			});
 
@@ -45,5 +50,58 @@ export default class ParagraphSpacingUI extends Plugin {
 
 			return dropdown;
 		});
+	}
+
+	_getLocalizedOptions() {
+		const editor = this.editor;
+		const localizedTitles = {
+			Default: '默认间距',
+		};
+
+		const configs = editor.config.get('paragraphSpacing.options').filter((option) => isSupported(option));
+		let unit = editor.config.get('paragraphSpacing.unit') || 'px';
+
+		if (!configs.includes('Default')) {
+			configs.unshift('Default');
+		}
+		if (unit && unit !== 'px' && unit !== '%') {
+			unit = 'px';
+		}
+
+		return normalizeOptions(configs, unit, 'margin-top').map((option) => {
+			const title = localizedTitles[option.title];
+			return title && title !== option.title ? Object.assign({}, option, { title }) : option;
+		});
+	}
+
+	_prepareListOptions(options, command) {
+		const itemDefinitions = new Collection();
+
+		for (const option of options) {
+			const def = {
+				type: 'button',
+				model: new Model({
+					commandName: 'paragraphSpacing',
+					commandParam: option.model,
+					label: option.title,
+					class: 'ck-paragraph-spacing-dropdown-item',
+					withText: true,
+				}),
+			};
+
+			if (option.view && option.view.classes) {
+				def.model.set('class', `${def.model.class} ${option.view.classes}`);
+			}
+
+			def.model.bind('isOn').to(command, 'value', (value) => {
+				const newValue = value ? parseFloat(value) : value;
+				return newValue === option.model;
+			});
+
+			// Add the option to the collection.
+			itemDefinitions.add(def);
+		}
+
+		return itemDefinitions;
 	}
 }

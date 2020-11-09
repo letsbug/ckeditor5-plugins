@@ -1,13 +1,12 @@
 export function isSupported(option) {
-	// return supportedOptions.includes( option );
 	return option === 'Default' || /^\d(.\d+)?$/gm.test(String(option));
 }
 
-export function normalizeOptions(configuredOptions) {
-	return configuredOptions.map(optionDefinition).filter((option) => !!option);
+export function normalizeOptions(configuredOptions, unit, prop) {
+	return configuredOptions.map((o) => optionDefinition(o, unit, prop)).filter((option) => !!option);
 }
 
-export function buildDefinition(options) {
+export function buildDefinition(options, unit) {
 	const definition = {
 		model: {
 			key: 'lineHeight',
@@ -20,7 +19,7 @@ export function buildDefinition(options) {
 		definition.view[option] = {
 			key: 'style',
 			value: {
-				'line-height': option,
+				'line-height': unit ? option + unit : option,
 			},
 		};
 	}
@@ -28,43 +27,28 @@ export function buildDefinition(options) {
 	return definition;
 }
 
-function optionDefinition(option) {
+function optionDefinition(option, unit, prop) {
 	if (typeof option === 'object') {
 		return option;
 	}
 
 	if (option === 'Default') {
-		return {
-			model: undefined,
-			title: '默认行距',
-		};
+		return { model: undefined, title: '默认行高' };
 	}
 
-	const sizePreset = parseFloat(option);
+	const size = parseFloat(option);
 
-	if (isNaN(sizePreset)) {
+	if (isNaN(size)) {
 		return;
 	}
 
-	return generatePixelPreset(sizePreset);
-}
-
-function generatePixelPreset(size) {
 	const sizeName = String(size);
-	const names = {
-		1: '单',
-		2: '双',
-	};
-
-	return {
-		title: (names[sizeName] || sizeName) + '倍',
+	const names = { 1: '单', 2: '双' };
+	const result = {
+		title: (names[sizeName] || sizeName) + (unit ? sizeName + unit : unit + '倍'),
 		model: size,
-		view: {
-			name: 'span',
-			styles: {
-				'line-height': sizeName,
-			},
-			priority: 5,
-		},
+		view: { name: 'span', priority: 5 },
 	};
+	result.view.styles[prop] = unit ? sizeName + unit : sizeName;
+	return result;
 }

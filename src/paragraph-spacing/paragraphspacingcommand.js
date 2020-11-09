@@ -14,18 +14,44 @@ export default class ParagraphSpacingCommand extends Command {
 		const firstBlock = first(this.editor.model.document.selection.getSelectedBlocks());
 
 		this.isEnabled = !!firstBlock && this._canSetAttribute(firstBlock);
-
-		this.value = this.isEnabled && firstBlock.hasAttribute(ATTRIBUTE) ? firstBlock.getAttribute(ATTRIBUTE) : '1';
+		this.value = this.isEnabled && firstBlock.hasAttribute(ATTRIBUTE) ? firstBlock.getAttribute(ATTRIBUTE) : 'Default';
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	execute() {
-		//
+	execute(options = {}) {
+		const editor = this.editor;
+		const model = editor.model;
+		const doc = model.document;
+		const value = options.value;
+
+		model.change((writer) => {
+			const blocks = Array.from(doc.selection.getSelectedBlocks()).filter((block) => this._canSetAttribute(block));
+			const currentSpacing = blocks[0].getAttribute(ATTRIBUTE);
+			const removeSpacing = currentSpacing === value || typeof value === 'undefined';
+
+			if (removeSpacing) {
+				removeParagraphSpacingFromSelection(blocks, writer);
+			} else {
+				setParagraphSpacingOnSelection(blocks, writer, value);
+			}
+		});
 	}
 
 	_canSetAttribute(block) {
 		return this.editor.model.schema.checkAttribute(block, ATTRIBUTE);
+	}
+}
+
+function removeParagraphSpacingFromSelection(blocks, writer) {
+	for (const block of blocks) {
+		writer.removeAttribute(ATTRIBUTE, block);
+	}
+}
+
+function setParagraphSpacingOnSelection(blocks, writer, lineHeight) {
+	for (const block of blocks) {
+		writer.setAttribute(ATTRIBUTE, lineHeight, block);
 	}
 }
