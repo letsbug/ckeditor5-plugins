@@ -1,6 +1,6 @@
 export function isSupported(option) {
 	// return supportedOptions.includes( option );
-	return /^\d(.\d+)?$/gm.test(String(option));
+	return option === 'Default' || /^\d(.\d+)?$/gm.test(String(option));
 }
 
 export function normalizeOptions(configuredOptions) {
@@ -33,10 +33,10 @@ function optionDefinition(option) {
 		return option;
 	}
 
-	if (option === 'default') {
+	if (option === 'Default') {
 		return {
 			model: undefined,
-			title: '标准',
+			title: '默认行距',
 		};
 	}
 
@@ -51,9 +51,13 @@ function optionDefinition(option) {
 
 function generatePixelPreset(size) {
 	const sizeName = String(size);
+	const names = {
+		1: '单',
+		2: '双',
+	};
 
 	return {
-		title: sizeName,
+		title: (names[sizeName] || sizeName) + '倍',
 		model: size,
 		view: {
 			name: 'span',

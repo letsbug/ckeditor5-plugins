@@ -7,7 +7,7 @@ export default class LineHeightEditing extends Plugin {
 		super(editor);
 
 		editor.config.define('lineHeight', {
-			options: [0, 0.5, 1, 1.5, 2],
+			options: ['Default', 1, 2, 3, 4, 5],
 		});
 	}
 
@@ -28,10 +28,8 @@ export default class LineHeightEditing extends Plugin {
 		schema.extend('$block', { allowAttributes: 'lineHeight' });
 		editor.model.schema.setAttributeProperties('lineHeight', { isFormatting: true });
 
-		const definition = buildDefinition(enabledOptions /* .filter( option => !isDefault( option ) ) */);
-
+		const definition = buildDefinition(enabledOptions);
 		editor.conversion.attributeToAttribute(definition);
-
 		editor.commands.add('lineHeight', new LineHeightCommand(editor));
 	}
 }

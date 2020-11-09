@@ -27,7 +27,7 @@ export default class LineHeightUI extends Plugin {
 
 			dropdownView.extendTemplate({
 				attributes: {
-					class: ['p0thi-ckeditor5-lineHeight-dropdown'],
+					class: ['ckeditor5-line-height-dropdown'],
 				},
 			});
 
@@ -46,20 +46,17 @@ export default class LineHeightUI extends Plugin {
 	_getLocalizedOptions() {
 		const editor = this.editor;
 		const localizedTitles = {
-			// Default: 'Standard'
-			Default: '标准',
+			Default: '默认行距',
 		};
-		const options = normalizeOptions(editor.config.get('lineHeight.options').filter((option) => isSupported(option)));
 
-		return options.map((option) => {
+		const configs = editor.config.get('lineHeight.options').filter((option) => isSupported(option));
+		if (!configs.includes('Default')) {
+			configs.unshift('Default');
+		}
+
+		return normalizeOptions(configs).map((option) => {
 			const title = localizedTitles[option.title];
-
-			if (title && title !== option.title) {
-				// Clone the option to avoid altering the original `namedPresets` from `./utils.js`.
-				option = Object.assign({}, option, { title });
-			}
-
-			return option;
+			return title && title !== option.title ? Object.assign({}, option, { title }) : option;
 		});
 	}
 }
