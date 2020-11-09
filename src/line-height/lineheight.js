@@ -5,6 +5,8 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import LineHeightEditing from './lineheightediting';
 import LineHeightUI from './lineheightui';
 
+export const ATTRIBUTE = 'lineHeight';
+
 export default class LineHeight extends Plugin {
 	/**
 	 * @inheritDoc

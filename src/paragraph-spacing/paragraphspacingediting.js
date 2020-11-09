@@ -4,6 +4,7 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ParagraphSpacingCommand from './paragraphspacingcommand';
 import { buildDefinition, isSupported } from '../line-height/utils';
+import { ATTRIBUTE } from './paragraphspacing';
 
 export default class ParagraphSpacingEditing extends Plugin {
 	/**
@@ -19,7 +20,7 @@ export default class ParagraphSpacingEditing extends Plugin {
 	constructor(editor) {
 		super(editor);
 
-		editor.config.define('lineHeight', {
+		editor.config.define(ATTRIBUTE, {
 			options: ['Default', 10, 20, 30, 40, 50],
 			unit: 'px',
 		});
@@ -43,11 +44,11 @@ export default class ParagraphSpacingEditing extends Plugin {
 		}
 
 		// Allow alignment attribute on all blocks.
-		schema.extend('$block', { allowAttributes: 'paragraphSpacing' });
-		editor.model.schema.setAttributeProperties('paragraphSpacing', { isFormatting: true });
+		schema.extend('$block', { allowAttributes: ATTRIBUTE });
+		editor.model.schema.setAttributeProperties(ATTRIBUTE, { isFormatting: true });
 
-		const definition = buildDefinition(enabledOptions, unit);
+		const definition = buildDefinition(enabledOptions, unit, ATTRIBUTE);
 		editor.conversion.attributeToAttribute(definition);
-		editor.commands.add('paragraphSpacing', new ParagraphSpacingCommand(editor));
+		editor.commands.add(ATTRIBUTE, new ParagraphSpacingCommand(editor));
 	}
 }

@@ -7,6 +7,7 @@ import Collection from '@ckeditor/ckeditor5-utils/src/collection';
 import { addListToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
 import { isSupported, normalizeOptions } from '../line-height/utils';
 import paragraphSpacingIcon from '../../theme/icons/paragraph-spacing.svg';
+import { ATTRIBUTE } from './paragraphspacing';
 
 export default class ParagraphSpacingUI extends Plugin {
 	/**
@@ -22,9 +23,9 @@ export default class ParagraphSpacingUI extends Plugin {
 	init() {
 		const editor = this.editor;
 		const options = this._getLocalizedOptions();
-		const command = editor.commands.get('paragraphSpacing');
+		const command = editor.commands.get(ATTRIBUTE);
 
-		editor.ui.componentFactory.add('paragraphSpacing', (locale) => {
+		editor.ui.componentFactory.add(ATTRIBUTE, (locale) => {
 			const dropdown = createDropdown(locale);
 			addListToDropdown(dropdown, this._prepareListOptions(options, command));
 
@@ -58,8 +59,8 @@ export default class ParagraphSpacingUI extends Plugin {
 			Default: '默认间距',
 		};
 
-		const configs = editor.config.get('paragraphSpacing.options').filter((option) => isSupported(option));
-		let unit = editor.config.get('paragraphSpacing.unit') || 'px';
+		const configs = editor.config.get(ATTRIBUTE + '.options').filter((option) => isSupported(option));
+		let unit = editor.config.get(ATTRIBUTE + '.unit') || 'px';
 
 		if (!configs.includes('Default')) {
 			configs.unshift('Default');
@@ -81,7 +82,7 @@ export default class ParagraphSpacingUI extends Plugin {
 			const def = {
 				type: 'button',
 				model: new Model({
-					commandName: 'paragraphSpacing',
+					commandName: ATTRIBUTE,
 					commandParam: option.model,
 					label: option.title,
 					class: 'ck-paragraph-spacing-dropdown-item',
@@ -95,7 +96,7 @@ export default class ParagraphSpacingUI extends Plugin {
 
 			def.model.bind('isOn').to(command, 'value', (value) => {
 				const newValue = value ? parseFloat(value) : value;
-				return newValue === option.model;
+				return (value === 'Default' && option.model === undefined) || newValue === option.model;
 			});
 
 			// Add the option to the collection.

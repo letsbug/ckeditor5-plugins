@@ -3,8 +3,7 @@
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import first from '@ckeditor/ckeditor5-utils/src/first';
-
-const ATTRIBUTE = 'paragraphSpacing';
+import { ATTRIBUTE } from './paragraphspacing';
 
 export default class ParagraphSpacingCommand extends Command {
 	/**
@@ -50,8 +49,8 @@ function removeParagraphSpacingFromSelection(blocks, writer) {
 	}
 }
 
-function setParagraphSpacingOnSelection(blocks, writer, lineHeight) {
+function setParagraphSpacingOnSelection(blocks, writer, value) {
 	for (const block of blocks) {
-		writer.setAttribute(ATTRIBUTE, lineHeight, block);
+		writer.setAttribute(ATTRIBUTE, value, block);
 	}
 }

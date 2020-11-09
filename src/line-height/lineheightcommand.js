@@ -3,8 +3,7 @@
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import first from '@ckeditor/ckeditor5-utils/src/first';
-
-const ATTRIBUTE = 'lineHeight';
+import { ATTRIBUTE } from './lineheight';
 
 export default class LineHeightCommand extends Command {
 	/**

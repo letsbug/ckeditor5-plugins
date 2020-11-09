@@ -4,6 +4,7 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import { isSupported, buildDefinition } from './utils';
 import LineHeightCommand from './lineheightcommand';
+import { ATTRIBUTE } from './lineheight';
 
 export default class LineHeightEditing extends Plugin {
 	/**
@@ -16,7 +17,7 @@ export default class LineHeightEditing extends Plugin {
 	constructor(editor) {
 		super(editor);
 
-		editor.config.define('lineHeight', {
+		editor.config.define(ATTRIBUTE, {
 			options: ['Default', 1, 2, 3, 4, 5],
 		});
 	}
@@ -39,11 +40,11 @@ export default class LineHeightEditing extends Plugin {
 		}
 
 		// Allow alignment attribute on all blocks.
-		schema.extend('$block', { allowAttributes: 'lineHeight' });
-		editor.model.schema.setAttributeProperties('lineHeight', { isFormatting: true });
+		schema.extend('$block', { allowAttributes: ATTRIBUTE });
+		editor.model.schema.setAttributeProperties(ATTRIBUTE, { isFormatting: true });
 
-		const definition = buildDefinition(enabledOptions, unit);
+		const definition = buildDefinition(enabledOptions, unit, ATTRIBUTE);
 		editor.conversion.attributeToAttribute(definition);
-		editor.commands.add('lineHeight', new LineHeightCommand(editor));
+		editor.commands.add(ATTRIBUTE, new LineHeightCommand(editor));
 	}
 }

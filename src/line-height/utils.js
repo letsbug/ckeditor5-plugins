@@ -1,27 +1,31 @@
 export function isSupported(option) {
-	return option === 'Default' || /^\d(.\d+)?$/gm.test(String(option));
+	return option === 'Default' || /^\d(\d)?$/gm.test(String(option));
 }
 
 export function normalizeOptions(configuredOptions, unit, prop) {
 	return configuredOptions.map((o) => optionDefinition(o, unit, prop)).filter((option) => !!option);
 }
 
-export function buildDefinition(options, unit) {
+export function buildDefinition(options, unit, prop) {
+	const styleProp = {
+		lineHeight: 'line-height',
+		paragraphSpacing: 'margin-top',
+	};
 	const definition = {
 		model: {
-			key: 'lineHeight',
+			key: prop,
 			values: options.slice(),
 		},
 		view: {},
 	};
 
 	for (const option of options) {
-		definition.view[option] = {
+		const result = {
 			key: 'style',
-			value: {
-				'line-height': unit ? option + unit : option,
-			},
+			value: {},
 		};
+		result.value[styleProp[prop]] = unit ? option + unit : option;
+		definition.view[option] = result;
 	}
 
 	return definition;
@@ -33,7 +37,7 @@ function optionDefinition(option, unit, prop) {
 	}
 
 	if (option === 'Default') {
-		return { model: undefined, title: '默认行高' };
+		return { model: undefined, title: prop === 'line-height' ? '默认行高' : '默认间距' };
 	}
 
 	const size = parseFloat(option);
@@ -43,11 +47,11 @@ function optionDefinition(option, unit, prop) {
 	}
 
 	const sizeName = String(size);
-	const names = { 1: '单', 2: '双' };
+	const named = { 1: '单', 2: '双' }[sizeName];
 	const result = {
-		title: (names[sizeName] || sizeName) + (unit ? sizeName + unit : unit + '倍'),
+		title: named ? named + '倍' : unit ? sizeName + unit : sizeName + '倍',
 		model: size,
-		view: { name: 'span', priority: 5 },
+		view: { name: 'span', priority: 5, styles: {} },
 	};
 	result.view.styles[prop] = unit ? sizeName + unit : sizeName;
 	return result;

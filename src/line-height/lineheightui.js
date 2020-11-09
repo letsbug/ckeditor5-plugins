@@ -7,6 +7,7 @@ import Collection from '@ckeditor/ckeditor5-utils/src/collection';
 import { createDropdown, addListToDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
 import { isSupported, normalizeOptions } from './utils';
 import LineHeightIcon from '../../theme/icons/line-height.svg';
+import { ATTRIBUTE } from './lineheight';
 
 export default class LineHeightUI extends Plugin {
 	/**
@@ -22,9 +23,9 @@ export default class LineHeightUI extends Plugin {
 	init() {
 		const editor = this.editor;
 		const options = this._getLocalizedOptions();
-		const command = editor.commands.get('lineHeight');
+		const command = editor.commands.get(ATTRIBUTE);
 
-		editor.ui.componentFactory.add('lineHeight', (locale) => {
+		editor.ui.componentFactory.add(ATTRIBUTE, (locale) => {
 			const dropdownView = createDropdown(locale);
 			addListToDropdown(dropdownView, this._prepareListOptions(options, command));
 
@@ -58,8 +59,8 @@ export default class LineHeightUI extends Plugin {
 			Default: '默认行高',
 		};
 
-		const configs = editor.config.get('lineHeight.options').filter((option) => isSupported(option));
-		let unit = editor.config.get('lineHeight.unit') || null;
+		const configs = editor.config.get(ATTRIBUTE + '.options').filter((option) => isSupported(option));
+		let unit = editor.config.get(ATTRIBUTE + '.unit') || null;
 
 		if (!configs.includes('Default')) {
 			configs.unshift('Default');
@@ -81,7 +82,7 @@ export default class LineHeightUI extends Plugin {
 			const def = {
 				type: 'button',
 				model: new Model({
-					commandName: 'lineHeight',
+					commandName: ATTRIBUTE,
 					commandParam: option.model,
 					label: option.title,
 					class: 'ck-line-height-dropdown-item',
@@ -95,7 +96,7 @@ export default class LineHeightUI extends Plugin {
 
 			def.model.bind('isOn').to(command, 'value', (value) => {
 				const newValue = value ? parseFloat(value) : value;
-				return newValue === option.model;
+				return (value === 'Default' && option.model === undefined) || newValue === option.model;
 			});
 
 			// Add the option to the collection.
