@@ -1,5 +1,5 @@
 /**
- * @module indent-first/paragraphspacing
+ * @module paragraph-spacing/paragraphspacing
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 

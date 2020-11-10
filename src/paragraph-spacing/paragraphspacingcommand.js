@@ -1,5 +1,5 @@
 /**
- * @module indent-first/paragraphspacingcommand
+ * @module paragraph-spacing/paragraphspacingcommand
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import first from '@ckeditor/ckeditor5-utils/src/first';

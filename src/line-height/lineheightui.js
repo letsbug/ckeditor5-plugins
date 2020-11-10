@@ -1,5 +1,5 @@
 /**
- * @module indent-first/lineheightui
+ * @module line-height/lineheightui
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import Model from '@ckeditor/ckeditor5-ui/src/model';

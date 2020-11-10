@@ -47,8 +47,6 @@ export default class IndentFirstEditing extends Plugin {
 					key: 'style',
 					value: {
 						'text-indent': indentFirstValue,
-						// , width: '50%'
-						// , margin: '5px'
 					},
 				},
 			},

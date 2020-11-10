@@ -1,5 +1,5 @@
 /**
- * @module indent-first/extensions
+ * @module extensions/extensions
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ExtensionsEditing from './extensionsediting';

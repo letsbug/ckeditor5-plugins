@@ -1,3 +1,6 @@
+/**
+ * @module extensions/extensionsui
+ */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 
@@ -50,8 +53,7 @@ export default class ExtensionsUI extends Plugin {
 
 			this.listenTo(button, 'execute', () => {
 				if (command) {
-					const selected = editor.model.document.selection.getSelectedElement();
-					command.call(editor, selected);
+					command.call(editor, editor.model.document.selection.getSelectedElement());
 				} else console.warn(`[${name}] extension feature no callback configuration can be executed.`);
 			});
 

@@ -1,5 +1,5 @@
 /**
- * @module indent-first/lineheightediting
+ * @module line-height/lineheightediting
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import { isSupported, buildDefinition } from './utils';
