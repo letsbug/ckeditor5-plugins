@@ -3,7 +3,7 @@
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import indentFirst from '../../theme/icons/indent-first.svg';
+import clearEmptiesIcon from '../../theme/icons/clear-empties.svg';
 
 export default class ClearEmptiesUI extends Plugin {
 	/**
@@ -24,8 +24,9 @@ export default class ClearEmptiesUI extends Plugin {
 
 			// TODO 清除空格包含首位全部空格+正文中多余1位的空格？
 			buttonView.set({
-				label: '清除多余空格和空行',
-				icon: indentFirst,
+				// label: '清除多余空格和空行',
+				label: '清除空行（无可避免会清除有意的断行）',
+				icon: clearEmptiesIcon,
 				tooltip: true,
 			});
 

@@ -20,8 +20,7 @@ export default class LineHeightCommand extends Command {
 	 * @inheritDoc
 	 */
 	execute(options = {}) {
-		const editor = this.editor;
-		const model = editor.model;
+		const model = this.editor.model;
 		const doc = model.document;
 		const value = options.value;
 
