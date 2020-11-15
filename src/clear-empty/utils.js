@@ -27,7 +27,7 @@ export function clearEmptyExecutable(blocks) {
  */
 export function clearEmpty(writer, blocks) {
 	blocks.forEach((b) => {
-		if (b.is('element', 'image') || b.is('element', 'media')) {
+		if (b.is('element', 'image') || b.is('element', 'media') || b.is('element', 'table')) {
 			return;
 		}
 		if (b.isEmpty) {
