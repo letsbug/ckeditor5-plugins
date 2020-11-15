@@ -51,7 +51,7 @@ export function clearSpace(writer, blocks) {
 					// text = text.replace(/^\s+/, '');
 					text = text.replace(new RegExp(`^[${character}]+`), '');
 				}
-				if (i > 0 && i === childes.length - 1) {
+				if (childes.length < 2 || (i > 0 && i === childes.length - 1)) {
 					// text = text.replace(/\s+$/, '');
 					text = text.replace(new RegExp(`[${character}]+$`), '');
 				}
