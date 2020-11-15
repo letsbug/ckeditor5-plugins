@@ -1,3 +1,5 @@
+const excludes = ['image', 'media', 'table'];
+
 /**
  * judgment whether the clearEmpty button can be executed
  *
@@ -6,7 +8,7 @@
  */
 export function clearEmptyExecutable(blocks) {
 	return blocks.some((b) => {
-		if (b.is('element', 'image') || b.is('element', 'media') || b.is('element', 'table')) {
+		if (excludes.some((e) => b.is('element', e))) {
 			return false;
 		}
 		if (b.isEmpty) {
@@ -27,7 +29,7 @@ export function clearEmptyExecutable(blocks) {
  */
 export function clearEmpty(writer, blocks) {
 	blocks.forEach((b) => {
-		if (b.is('element', 'image') || b.is('element', 'media') || b.is('element', 'table')) {
+		if (excludes.some((e) => b.is('element', e))) {
 			return;
 		}
 		if (b.isEmpty) {
