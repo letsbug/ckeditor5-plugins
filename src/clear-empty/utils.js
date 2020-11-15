@@ -6,6 +6,9 @@
  */
 export function clearEmptyExecutable(blocks) {
 	return blocks.some((b) => {
+		if (b.is('element', 'image') || b.is('element', 'media') || b.is('element', 'table')) {
+			return false;
+		}
 		if (b.isEmpty) {
 			return true;
 		}
