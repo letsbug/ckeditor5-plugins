@@ -1,5 +1,6 @@
 // All white space characters except '\n'
 const character = ' \\f\\r\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff';
+const excludes = ['image', 'media', 'table'];
 
 /**
  * judgment whether the clearSpace button can be executed
@@ -9,6 +10,9 @@ const character = ' \\f\\r\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u2028\\u20
  */
 export function clearSpaceExecutable(blocks) {
 	return blocks.some((b) => {
+		if (excludes.some((e) => b.is('element', e))) {
+			return false;
+		}
 		if (b.isEmpty || (b.data && b.data.trim() === '')) {
 			return false;
 		}
@@ -30,7 +34,7 @@ export function clearSpaceExecutable(blocks) {
  */
 export function clearSpace(writer, blocks) {
 	blocks.forEach((b) => {
-		if (b.is('element', 'image') || b.is('element', 'media')) {
+		if (excludes.some((e) => b.is('element', e))) {
 			return;
 		}
 
