@@ -8,30 +8,52 @@ export function softBreakToEnterExecutable(blocks) {
 }
 
 /**
+ * reset replace element
+ *
+ * @param writer
+ * @param block
+ * @returns {module:engine/view/element~Element|module:engine/model/element~Element|HTMLElement|*|ActiveX.IXMLDOMElement}
+ */
+function resetReplace(writer, block) {
+	return writer.createElement(block.name, Object.fromEntries(block.getAttributes()));
+}
+
+/**
  * execute 'soft break to enter' command
  * @param writer
- * @param blocks
+ * @param block
  */
-export function softBreakToEnter(writer, blocks) {
-	blocks.forEach((block) => {
-		const childes = block.getChildren();
-		if (!childes.some((child) => child.name === 'softBreak')) {
-			return;
+export function softBreakToEnter(writer, block) {
+	const iterator = block.getChildren();
+	if (!iterator) {
+		return;
+	}
+
+	const childes = Array.from(iterator);
+	if (childes.every((child) => child.name !== 'softBreak')) {
+		return;
+	}
+
+	let replace = resetReplace(writer, block);
+	let lastInsert = null;
+	childes.forEach((child, i) => {
+		const attrs = Object.fromEntries(child.getAttributes());
+
+		if (child.is('$text')) {
+			writer.appendText(child.data, attrs, replace);
+		} else if (child.name !== 'softBreak') {
+			writer.appendElement(child.name, attrs, replace);
 		}
 
-		let replace = writer.createElement(block.name, Object.fromEntries(block.getAttributes()));
-		childes.forEach((child) => {
-			const attrs = Object.fromEntries(child.getAttributes());
-			if (child.is('$text')) {
-				writer.appendText(child.data, attrs, replace);
-			} else if (child.name !== 'softBreak') {
-				writer.appendElement(child.name, attrs, replace);
-				return;
-			}
+		if (child.name === 'softBreak' || i === childes.length - 1) {
+			writer.insert(replace, writer.createPositionAfter(lastInsert || block));
 
-			console.log('will be the replace soft break character to enter');
-			writer.insertBefore(replace);
-			replace = writer.createElement(block.name, Object.fromEntries(block.getAttributes()));
-		});
+			if (i < childes.length - 1 && child.name === 'softBreak') {
+				lastInsert = replace;
+				replace = resetReplace(writer, block);
+			}
+		}
 	});
+
+	writer.remove(block);
 }
