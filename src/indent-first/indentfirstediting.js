@@ -4,6 +4,7 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import IndentFirstCommand from './indentfirstcommand';
+import { ATTRIBUTE } from './indentfirst';
 
 export default class IndentFirstEditing extends Plugin {
 	/**
@@ -32,15 +33,15 @@ export default class IndentFirstEditing extends Plugin {
 		const indentFirstValue = editor.config.get('indentFirstValue');
 
 		// Allow indentFirst attribute on all blocks.
-		schema.extend('$block', { allowAttributes: 'indentFirst' });
-		editor.model.schema.setAttributeProperties('indentFirst', {
+		schema.extend('$block', { allowAttributes: ATTRIBUTE });
+		editor.model.schema.setAttributeProperties(ATTRIBUTE, {
 			isFormatting: true,
 		});
 
 		const definition = {
 			model: {
-				key: 'indentFirst',
-				values: ['indentFirst'],
+				key: ATTRIBUTE,
+				values: [ATTRIBUTE],
 			},
 			view: {
 				indentFirst: {
@@ -54,6 +55,6 @@ export default class IndentFirstEditing extends Plugin {
 
 		editor.conversion.attributeToAttribute(definition);
 
-		editor.commands.add('indentFirst', new IndentFirstCommand(editor));
+		editor.commands.add(ATTRIBUTE, new IndentFirstCommand(editor));
 	}
 }

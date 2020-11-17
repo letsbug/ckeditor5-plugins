@@ -4,6 +4,7 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
+import { ATTRIBUTE } from './indentfirst';
 import indentFirst from '../../theme/icons/indent-first.svg';
 
 export default class IndentFirstUi extends Plugin {
@@ -20,8 +21,8 @@ export default class IndentFirstUi extends Plugin {
 	init() {
 		const editor = this.editor;
 
-		editor.ui.componentFactory.add('indentFirst', (locale) => {
-			const command = editor.commands.get('indentFirst');
+		editor.ui.componentFactory.add(ATTRIBUTE, (locale) => {
+			const command = editor.commands.get(ATTRIBUTE);
 			const buttonView = new ButtonView(locale);
 
 			buttonView.set({
@@ -35,7 +36,7 @@ export default class IndentFirstUi extends Plugin {
 
 			// Execute command.
 			this.listenTo(buttonView, 'execute', () => {
-				editor.execute('indentFirst');
+				editor.execute(ATTRIBUTE);
 				editor.editing.view.focus();
 			});
 

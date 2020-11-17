@@ -6,8 +6,8 @@ import Model from '@ckeditor/ckeditor5-ui/src/model';
 import Collection from '@ckeditor/ckeditor5-utils/src/collection';
 import { addListToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
 import { isSupported, normalizeOptions } from '../line-height/utils';
-import paragraphSpacingIcon from '../../theme/icons/paragraph-spacing.svg';
 import { ATTRIBUTE } from './paragraphspacing';
+import paragraphSpacingIcon from '../../theme/icons/paragraph-spacing.svg';
 
 export default class ParagraphSpacingUI extends Plugin {
 	/**

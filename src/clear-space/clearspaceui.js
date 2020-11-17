@@ -3,6 +3,7 @@
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
+import { ATTRIBUTE } from './clearspace';
 import trimIcon from '../../theme/icons/trim.svg';
 
 export default class ClearSpaceUI extends Plugin {
@@ -18,8 +19,8 @@ export default class ClearSpaceUI extends Plugin {
 	 */
 	init() {
 		const editor = this.editor;
-		editor.ui.componentFactory.add('clearSpace', (locale) => {
-			const command = editor.commands.get('clearSpace');
+		editor.ui.componentFactory.add(ATTRIBUTE, (locale) => {
+			const command = editor.commands.get(ATTRIBUTE);
 			const buttonView = new ButtonView(locale);
 
 			// TODO 清除空格包含首位全部空格+正文中多余1位的空格？
@@ -33,7 +34,7 @@ export default class ClearSpaceUI extends Plugin {
 			buttonView.bind('isOn', 'isEnabled').to(command, 'value', 'isEnabled');
 
 			this.listenTo(buttonView, 'execute', () => {
-				editor.execute('clearSpace');
+				editor.execute(ATTRIBUTE);
 				editor.editing.view.focus();
 			});
 

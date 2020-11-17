@@ -5,6 +5,8 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ClearEmptyUI from './clearemptyui';
 import ClearEmptyEditing from './clearemptyediting';
 
+export const ATTRIBUTE = 'clearEmpty';
+
 export default class ClearEmpty extends Plugin {
 	/**
 	 * @inheritDoc

@@ -3,8 +3,7 @@
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import first from '@ckeditor/ckeditor5-utils/src/first';
-
-const INDENT_FIRST = 'indentFirst';
+import { ATTRIBUTE } from './indentfirst';
 
 /**
  * The indent-first command plugin.
@@ -20,8 +19,8 @@ export default class IndentFirstCommand extends Command {
 		this.isEnabled = !!firstBlock && this._canBeAligned(firstBlock);
 
 		// 设置按钮状态
-		if (this.isEnabled && firstBlock.hasAttribute(INDENT_FIRST)) {
-			this.value = firstBlock.getAttribute(INDENT_FIRST);
+		if (this.isEnabled && firstBlock.hasAttribute(ATTRIBUTE)) {
+			this.value = firstBlock.getAttribute(ATTRIBUTE);
 		} else {
 			this.value = null;
 		}
@@ -38,19 +37,19 @@ export default class IndentFirstCommand extends Command {
 
 		model.change((writer) => {
 			const blocks = Array.from(doc.selection.getSelectedBlocks()).filter((block) => this._canBeAligned(block));
-			const currentIndent = blocks[0].getAttribute(INDENT_FIRST);
-			const removeIndent = currentIndent === INDENT_FIRST || !INDENT_FIRST;
+			const currentIndent = blocks[0].getAttribute(ATTRIBUTE);
+			const removeIndent = currentIndent === ATTRIBUTE || !ATTRIBUTE;
 
 			if (removeIndent) {
 				removeFromSelection(blocks, writer);
 			} else {
-				setIndentOnSelection(blocks, writer, INDENT_FIRST);
+				setIndentOnSelection(blocks, writer, ATTRIBUTE);
 			}
 		});
 	}
 
 	_canBeAligned(block) {
-		return this.editor.model.schema.checkAttribute(block, INDENT_FIRST);
+		return this.editor.model.schema.checkAttribute(block, ATTRIBUTE);
 	}
 }
 
@@ -58,7 +57,7 @@ export default class IndentFirstCommand extends Command {
 // @private
 function removeFromSelection(blocks, writer) {
 	for (const block of blocks) {
-		writer.removeAttribute(INDENT_FIRST, block);
+		writer.removeAttribute(ATTRIBUTE, block);
 	}
 }
 
@@ -66,6 +65,6 @@ function removeFromSelection(blocks, writer) {
 // @private
 function setIndentOnSelection(blocks, writer, plug) {
 	for (const block of blocks) {
-		writer.setAttribute(INDENT_FIRST, plug, block);
+		writer.setAttribute(ATTRIBUTE, plug, block);
 	}
 }

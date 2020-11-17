@@ -3,6 +3,7 @@
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ClearSpaceCommand from './clearspacecommand';
+import { ATTRIBUTE } from './clearspace';
 
 export default class ClearSpaceEditing extends Plugin {
 	/**
@@ -17,7 +18,6 @@ export default class ClearSpaceEditing extends Plugin {
 	 */
 	init() {
 		const editor = this.editor;
-		// const schema = editor.model.schema;
-		editor.commands.add('clearSpace', new ClearSpaceCommand(editor));
+		editor.commands.add(ATTRIBUTE, new ClearSpaceCommand(editor));
 	}
 }
