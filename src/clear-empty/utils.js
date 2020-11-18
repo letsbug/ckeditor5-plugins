@@ -26,12 +26,21 @@ function isEmpty(block) {
 /**
  * judgment whether the clearEmpty button can be executed
  *
- * @param blocks
+ * @param document
  * @return {boolean}
  */
-export function clearEmptyExecutable(blocks) {
+export function clearEmptyExecutable(document) {
+	const root = document.getRoot();
+	if (root.childCount < 2) {
+		return false;
+	}
+
+	const iterators = document.selection.getSelectedBlocks();
+	if (!iterators) {
+		return false;
+	}
 	// When the data is empty, there is a default <p> tag.
-	return blocks.length > 1 && blocks.some((b) => b.isEmpty || (!inExcludes(b) && isEmpty(b)));
+	return Array.from(iterators).some((b) => b.isEmpty || (!inExcludes(b) && isEmpty(b)));
 }
 
 /**

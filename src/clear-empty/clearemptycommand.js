@@ -9,8 +9,7 @@ export default class ClearEmptyCommand extends Command {
 	 * @inheritDoc
 	 */
 	refresh() {
-		const blocks = this.editor.model.document.selection.getSelectedBlocks();
-		this.isEnabled = !!blocks && clearEmptyExecutable(Array.from(blocks));
+		this.isEnabled = clearEmptyExecutable(this.editor.model.document);
 	}
 
 	/**
@@ -23,13 +22,8 @@ export default class ClearEmptyCommand extends Command {
 			return;
 		}
 
-		const blocks = Array.from(iterator);
-		if (blocks.length < 2) {
-			return;
-		}
-
 		model.change((writer) => {
-			blocks.forEach((block) => clearEmpty(writer, block));
+			Array.from(iterator).forEach((block) => clearEmpty(writer, block));
 		});
 	}
 }
