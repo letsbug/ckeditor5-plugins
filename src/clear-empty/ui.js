@@ -1,9 +1,9 @@
 /**
- * @module clear-empty/clearemptyui
+ * @module clear-empty/ui
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import { ATTRIBUTE } from './clearempty';
+import { ATTRIBUTE } from './index';
 import clearEmptyIcon from '../../theme/icons/clear-empty.svg';
 
 export default class ClearEmptyUI extends Plugin {

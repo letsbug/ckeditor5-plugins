@@ -1,9 +1,9 @@
 /**
- * @module paragraph-spacing/paragraphspacingcommand
+ * @module paragraph-spacing/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import first from '@ckeditor/ckeditor5-utils/src/first';
-import { ATTRIBUTE } from './paragraphspacing';
+import { ATTRIBUTE } from './index';
 
 export default class ParagraphSpacingCommand extends Command {
 	/**

@@ -1,9 +1,9 @@
 /**
- * @module clear-empty/clearemptyediting
+ * @module clear-empty/editing
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ClearEmptyCommand from './clearemptycommand';
-import { ATTRIBUTE } from './clearempty';
+import ClearEmptyCommand from './command';
+import { ATTRIBUTE } from './index';
 
 export default class ClearEmptyEditing extends Plugin {
 	/**

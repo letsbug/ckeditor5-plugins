@@ -1,9 +1,9 @@
 /**
- * @module line-height/lineheight
+ * @module line-height/index
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import LineHeightEditing from './lineheightediting';
-import LineHeightUI from './lineheightui';
+import LineHeightEditing from './editing';
+import LineHeightUI from './ui';
 
 export const ATTRIBUTE = 'lineHeight';
 

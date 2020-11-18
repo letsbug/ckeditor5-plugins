@@ -1,5 +1,5 @@
 /**
- * @module clear-space/clearspacecommand
+ * @module clear-space/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import { clearSpace, clearSpaceExecutable } from './utils';

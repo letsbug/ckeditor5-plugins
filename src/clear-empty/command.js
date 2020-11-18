@@ -1,5 +1,5 @@
 /**
- * @module clear-empty/clearemptycommand
+ * @module clear-empty/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import { clearEmpty, clearEmptyExecutable } from './utils';

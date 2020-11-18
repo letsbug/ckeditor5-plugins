@@ -1,10 +1,10 @@
 /**
- * @module soft-break-to-enter/softbreaktoenter
+ * @module soft-break-to-enter/index
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-import SoftBreakToEnterUI from './softbreaktoenterui';
-import SoftBreakToEnterEditing from './softbreaktoenterediting';
+import SoftBreakToEnterUI from './ui';
+import SoftBreakToEnterEditing from './editing';
 
 export const ATTRIBUTE = 'softBreakToEnter';
 

@@ -1,9 +1,9 @@
 /**
- * @module clear-empty/clearempty
+ * @module clear-empty/index
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ClearEmptyUI from './clearemptyui';
-import ClearEmptyEditing from './clearemptyediting';
+import ClearEmptyUI from './ui';
+import ClearEmptyEditing from './editing';
 
 export const ATTRIBUTE = 'clearEmpty';
 

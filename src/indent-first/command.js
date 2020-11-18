@@ -1,9 +1,9 @@
 /**
- * @module indent-first/indentfirstcommand
+ * @module indent-first/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import first from '@ckeditor/ckeditor5-utils/src/first';
-import { ATTRIBUTE } from './indentfirst';
+import { ATTRIBUTE } from './index';
 
 /**
  * The indent-first command plugin.

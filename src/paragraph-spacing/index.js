@@ -1,10 +1,10 @@
 /**
- * @module paragraph-spacing/paragraphspacing
+ * @module paragraph-spacing/index
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-import ParagraphSpacingEditing from './paragraphspacingediting';
-import ParagraphSpacingUI from './paragraphspacingui';
+import ParagraphSpacingEditing from './editing';
+import ParagraphSpacingUI from './ui';
 
 export const ATTRIBUTE = 'paragraphSpacing';
 

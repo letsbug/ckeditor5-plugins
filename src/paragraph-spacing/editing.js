@@ -1,10 +1,10 @@
 /**
- * @module paragraph-spacing/paragraphspacingediting
+ * @module paragraph-spacing/editing
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ParagraphSpacingCommand from './paragraphspacingcommand';
+import ParagraphSpacingCommand from './command';
 import { buildDefinition, isSupported } from '../line-height/utils';
-import { ATTRIBUTE } from './paragraphspacing';
+import { ATTRIBUTE } from './index';
 
 export default class ParagraphSpacingEditing extends Plugin {
 	/**

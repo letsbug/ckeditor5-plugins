@@ -1,8 +1,8 @@
 /**
- * @module soft-break-to-enter/softbreaktoenterui
+ * @module soft-break-to-enter/ui
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import { ATTRIBUTE } from './softbreaktoenter';
+import { ATTRIBUTE } from './index';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 import buttonIcon from '../../theme/icons/soft-break-to-enter.svg';
 

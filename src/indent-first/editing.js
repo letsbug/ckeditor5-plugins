@@ -1,10 +1,10 @@
 /**
- * @module indent-first/indentfirstediting
+ * @module indent-first/editing
  */
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import IndentFirstCommand from './indentfirstcommand';
-import { ATTRIBUTE } from './indentfirst';
+import IndentFirstCommand from './command';
+import { ATTRIBUTE } from './index';
 
 export default class IndentFirstEditing extends Plugin {
 	/**

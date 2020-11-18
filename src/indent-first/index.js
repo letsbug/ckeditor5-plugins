@@ -1,10 +1,10 @@
 /**
- * @module indent-first/indentfirst
+ * @module indent-first/index
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-import IndentFirstEditing from './indentfirstediting';
-import IndentFirstUi from './indentfirstui';
+import IndentFirstEditing from './editing';
+import IndentFirstUi from './ui';
 
 export const ATTRIBUTE = 'indentFirst';
 

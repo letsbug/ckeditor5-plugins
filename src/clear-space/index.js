@@ -1,9 +1,9 @@
 /**
- * @module clear-space/clearspace
+ * @module clear-space/index
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ClearSpaceUI from './clearspaceui';
-import ClearSpaceEditing from './clearspaceediting';
+import ClearSpaceUI from './ui';
+import ClearSpaceEditing from './editing';
 
 export const ATTRIBUTE = 'clearSpace';
 

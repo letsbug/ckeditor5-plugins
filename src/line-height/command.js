@@ -1,9 +1,9 @@
 /**
- * @module line-height/lineheightcommand
+ * @module line-height/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import first from '@ckeditor/ckeditor5-utils/src/first';
-import { ATTRIBUTE } from './lineheight';
+import { ATTRIBUTE } from './index';
 
 export default class LineHeightCommand extends Command {
 	/**

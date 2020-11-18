@@ -1,5 +1,5 @@
 /**
- * @module soft-break-to-enter/softbreaktoentercommand
+ * @module soft-break-to-enter/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import { softBreakToEnter, softBreakToEnterExecutable } from './utils';

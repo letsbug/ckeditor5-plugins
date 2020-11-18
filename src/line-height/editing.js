@@ -1,10 +1,10 @@
 /**
- * @module line-height/lineheightediting
+ * @module line-height/editing
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import { isSupported, buildDefinition } from './utils';
-import LineHeightCommand from './lineheightcommand';
-import { ATTRIBUTE } from './lineheight';
+import LineHeightCommand from './command';
+import { ATTRIBUTE } from './index';
 
 export default class LineHeightEditing extends Plugin {
 	/**

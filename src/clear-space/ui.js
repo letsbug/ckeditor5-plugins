@@ -1,18 +1,17 @@
 /**
- * @module indent-first/indentfirstui
+ * @module clear-space/ui
  */
-
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import { ATTRIBUTE } from './indentfirst';
-import indentFirst from '../../theme/icons/indent-first.svg';
+import { ATTRIBUTE } from './index';
+import trimIcon from '../../theme/icons/trim.svg';
 
-export default class IndentFirstUi extends Plugin {
+export default class ClearSpaceUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
 	static get pluginName() {
-		return 'IndentFirstUI';
+		return 'ClearSpaceUI';
 	}
 
 	/**
@@ -20,21 +19,20 @@ export default class IndentFirstUi extends Plugin {
 	 */
 	init() {
 		const editor = this.editor;
-
 		editor.ui.componentFactory.add(ATTRIBUTE, (locale) => {
 			const command = editor.commands.get(ATTRIBUTE);
 			const buttonView = new ButtonView(locale);
 
+			// TODO 清除空格包含首位全部空格+正文中多余1位的空格？
 			buttonView.set({
-				label: '首行缩进',
-				icon: indentFirst,
+				// label: '清除多余空格和空行',
+				label: '清除多余空格（无可避免会清除有意的空格）',
+				icon: trimIcon,
 				tooltip: true,
-				isToggleable: true,
 			});
 
 			buttonView.bind('isOn', 'isEnabled').to(command, 'value', 'isEnabled');
 
-			// Execute command.
 			this.listenTo(buttonView, 'execute', () => {
 				editor.execute(ATTRIBUTE);
 				editor.editing.view.focus();
