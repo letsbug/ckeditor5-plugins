@@ -1,6 +1,40 @@
 // All white space characters except '\n'
-const character = ' \\f\\r\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff';
+const empties = ' \\f\\r\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff';
 const excludes = ['image', 'media', 'table'];
+
+/**
+ * is it a picture, video or table
+ *
+ * @param block
+ * @returns {boolean}
+ */
+function inExclude(block) {
+	return excludes.some((e) => block.is('element', e));
+}
+
+/**
+ * Whether is empty
+ *
+ * @param block
+ * @returns {Boolean|boolean|*}
+ */
+function isEmpty(block) {
+	return block.isEmpty || (block.data && block.data.trim() === '');
+}
+
+/**
+ * begin with blank || end with blank || contains more than 2 white space characters
+ *
+ * @param block
+ * @returns {boolean}
+ */
+function hasSpaces(block) {
+	const text = Array.from(block.getChildren())
+		.map((c) => c.data)
+		.join('');
+
+	return new RegExp(`^[${empties}]+`).test(text) || new RegExp(`[${empties}]+$`).test(text) || new RegExp(`[${empties}]{2}`, 'g').test(text);
+}
 
 /**
  * judgment whether the clearSpace button can be executed
@@ -9,61 +43,41 @@ const excludes = ['image', 'media', 'table'];
  * @return {boolean}
  */
 export function clearSpaceExecutable(blocks) {
-	return blocks.some((b) => {
-		if (excludes.some((e) => b.is('element', e))) {
-			return false;
-		}
-		if (b.isEmpty || (b.data && b.data.trim() === '')) {
-			return false;
-		}
-		const text = Array.from(b.getChildren())
-			.map((c) => c.data)
-			.join('');
-		// begin with blank || end with blanck || contains more than 2 white space characters
-		// 以空白开头 || 以空白结尾 || 包含2个以上空白字符
-		return new RegExp(`^[${character}]+`).test(text) || new RegExp(`[${character}]+$`).test(text) || new RegExp(`[${character}]{2}`, 'g').test(text);
-	});
+	return blocks.some((b) => !(isEmpty(b) || inExclude(b)) && hasSpaces(b));
 }
 
 /**
  * Execute clear space command
  *
  * @param writer
- * @param blocks
- * /^([\s+])?.*([\s]{2})?.*([\s+])?$/
+ * @param block
  */
-export function clearSpace(writer, blocks) {
-	blocks.forEach((b) => {
-		if (excludes.some((e) => b.is('element', e))) {
-			return;
-		}
+export function clearSpace(writer, block) {
+	if (excludes.some((e) => block.is('element', e))) {
+		return;
+	}
 
-		const replace = writer.createElement(b.name, Object.fromEntries(b.getAttributes()));
-		const childes = Array.from(b.getChildren());
+	const replace = writer.createElement(block.name, Object.fromEntries(block.getAttributes()));
+	const childes = Array.from(block.getChildren());
 
-		childes.forEach((node, i) => {
-			const attrs = Object.fromEntries(node.getAttributes());
-			if (node.is('$text')) {
-				// let text = node.data.replace(/\s+/g, ' ');
-				let text = node.data.replace(new RegExp(`[${character}]+`, 'g'), ' ');
-				// if (i === 0 || (i > 0 && /\s+$/.test(childes[i - 1].data))) {
-				if (i === 0 || (i > 0 && new RegExp(`[${character}]+$`).test(childes[i - 1].data))) {
-					// text = text.replace(/^\s+/, '');
-					text = text.replace(new RegExp(`^[${character}]+`), '');
-				}
-				if (childes.length < 2 || (i > 0 && i === childes.length - 1)) {
-					// text = text.replace(/\s+$/, '');
-					text = text.replace(new RegExp(`[${character}]+$`), '');
-				}
+	childes.forEach((node, i) => {
+		const attrs = Object.fromEntries(node.getAttributes());
+		if (node.is('$text')) {
+			let text = node.data.replace(new RegExp(`[${empties}]+`, 'g'), ' ');
 
-				writer.appendText(text, attrs, replace);
-			} else {
-				// May contain non-text element nodes (eg: softBreak)
-				writer.appendElement(node.name, attrs, replace);
+			if (i === 0 || (i > 0 && new RegExp(`[${empties}]+$`).test(childes[i - 1].data))) {
+				text = text.replace(new RegExp(`^[${empties}]+`), '');
 			}
-		});
+			if (childes.length < 2 || (i > 0 && i === childes.length - 1)) {
+				text = text.replace(new RegExp(`[${empties}]+$`), '');
+			}
 
-		writer.insert(replace, b, 'after');
-		writer.remove(b);
+			writer.appendText(text, attrs, replace);
+		} else {
+			writer.appendElement(node.name, attrs, replace);
+		}
 	});
+
+	writer.insert(replace, block, 'after');
+	writer.remove(block);
 }
