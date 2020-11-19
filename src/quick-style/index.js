@@ -12,7 +12,7 @@ export default class QuickStyle extends Plugin {
 	 * @inheritDoc
 	 */
 	static get requires() {
-		return [QuickStyleUI, QuickStyleEditing];
+		return [QuickStyleEditing, QuickStyleUI];
 	}
 
 	/**

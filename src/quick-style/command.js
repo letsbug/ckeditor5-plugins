@@ -7,7 +7,9 @@ export default class QuickStyleCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */
-	refresh() {}
+	refresh() {
+		this.isEnabled = true;
+	}
 
 	/**
 	 * @inheritDoc
