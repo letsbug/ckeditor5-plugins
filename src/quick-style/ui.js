@@ -57,10 +57,12 @@ export default class QuickStyleUI extends Plugin {
 		});
 
 		dropdown.on('submit', () => {
-			if (form.isValid()) {
-				console.log('quick style command logic to be perfect');
-				closeDropdown();
+			if (!form.isValid()) {
+				return;
 			}
+
+			console.log('quick style command logic to be perfect');
+			closeDropdown();
 		});
 
 		dropdown.on('change:isOpen', () => form.resetFormStatus());

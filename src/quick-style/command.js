@@ -15,6 +15,6 @@ export default class QuickStyleCommand extends Command {
 	 * @inheritDoc
 	 */
 	execute() {
-		//
+		console.log('executing quick style command');
 	}
 }
