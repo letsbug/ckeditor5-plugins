@@ -47,7 +47,7 @@ export default class QuickStyleUI extends Plugin {
 		});
 
 		button.on('open', () => {
-			//
+			// form.resetFormStatus();
 		});
 
 		dropdown.extendTemplate({
@@ -62,6 +62,7 @@ export default class QuickStyleUI extends Plugin {
 			}
 
 			console.log('quick style command logic to be perfect');
+			editor.execute('quickStyle', form.quickStyleFormValue);
 			closeDropdown();
 		});
 

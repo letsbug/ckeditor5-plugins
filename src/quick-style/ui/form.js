@@ -139,7 +139,7 @@ export default class QuickStyleForm extends View {
 			tag: 'form',
 
 			attributes: {
-				class: ['ck', 'ck-quick-style-form', 'ck-form-vertical', 'ck-vertical-form', 'ck-responsive-form'],
+				class: ['ck', 'ck-quick-style-form', 'ck-form-vertical', 'ck-responsive-form'],
 
 				tabindex: '-1',
 			},
@@ -179,12 +179,21 @@ export default class QuickStyleForm extends View {
 	}
 
 	isValid() {
-		this.resetFormStatus();
 		return Object.values(this.quickStyleFormValue).some((val) => !!val);
 	}
 
 	resetFormStatus() {
-		// this.indentFirstView.toggleSwitchView.
+		this.indentFirstView.isOn = false;
+		this.clearEmptyView.isOn = false;
+		this.clearSpaceView.isOn = false;
+		this.softBreakToEnterView.isOn = false;
+
+		this.quickStyleFormValue = {
+			indentFirst: false,
+			clearEmpty: false,
+			clearSpace: false,
+			softBreakToEnter: false,
+		};
 	}
 
 	_createSwitches(label, name) {
@@ -198,7 +207,7 @@ export default class QuickStyleForm extends View {
 
 		switchButton.on('execute', () => {
 			switchButton.isOn = !switchButton.isOn;
-			this.quickStyleFormValue[name] = !switchButton.isOn;
+			this.quickStyleFormValue[name] = switchButton.isOn;
 		});
 
 		return switchButton;

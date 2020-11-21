@@ -3,10 +3,10 @@
 	flex-flow: column;
 
 	&.ck-form-vertical > * {
-		margin-left: 0!important;
+		margin-left: 0 !important;
 	}
 
-	.ck.ck-button.ck-on, a.ck.ck-button.ck-on {
-		background-color: transparent;
+	& > .ck.ck-button.ck-on, & > a.ck.ck-button.ck-on {
+		background-color: transparent !important;
 	}
 }
