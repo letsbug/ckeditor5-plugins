@@ -13,14 +13,22 @@ import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
 
 import '../../../theme/quick-style-form.css';
 import '@ckeditor/ckeditor5-ui/theme/components/responsive-form/responsiveform.css';
+import { checkFields } from '../utils';
 
-const fields = [
+export const fields = [
 	{ label: '文本格式化', name: 'textFormat' },
+	// { label: '清除超链接', name: 'clearLinks' },
 	{ label: '首行缩进', name: 'indentFirst' },
 	{ label: '清除空行', name: 'clearEmpty' },
 	{ label: '清除多余空格', name: 'clearSpace' },
 	{ label: '换行转断行', name: 'softBreakToEnter' },
 ];
+
+function generateObserver() {
+	const obj = {};
+	fields.forEach(({ name }) => (obj[name] = false));
+	return obj;
+}
 
 /**
  * The quick style form view controller class.
@@ -53,13 +61,7 @@ export default class QuickStyleForm extends View {
 		 * @member {Boolean} #quickStyle
 		 * @observable
 		 */
-		this.set('quickStyleFormValue', {
-			textFormat: false,
-			indentFirst: false,
-			clearEmpty: false,
-			clearSpace: false,
-			softBreakToEnter: false,
-		});
+		this.set('quickStyleFormValue', generateObserver());
 
 		/**
 		 * form fields switch buttons views
@@ -175,8 +177,10 @@ export default class QuickStyleForm extends View {
 	}
 
 	resetFormStatus(status) {
+		const validStatus = checkFields(status);
+
 		this.fieldsViews.forEach((view) => {
-			const val = status[view.name];
+			const val = validStatus ? status[view.name] : false;
 			view.isOn = val;
 			this.quickStyleFormValue[view.name] = val;
 		});

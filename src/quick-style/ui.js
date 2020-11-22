@@ -76,15 +76,14 @@ export default class QuickStyleUI extends Plugin {
 
 	_getStorage() {
 		const fields = localStorage.getItem(STORAGE_KEY);
-		const defaults = { textFormat: false, indentFirst: false, clearEmpty: false, clearSpace: false, softBreakToEnter: false };
 		if (!fields) {
-			return defaults;
+			return null;
 		}
 
 		try {
 			return JSON.parse(fields);
 		} catch {
-			return defaults;
+			return null;
 		}
 	}
 }
