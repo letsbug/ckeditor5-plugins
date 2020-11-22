@@ -2,10 +2,6 @@
  * @module quick-style/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
-import { softBreakToEnter } from '../soft-break-to-enter/utils';
-import { clearEmpty } from '../clear-empty/utils';
-import { clearSpace } from '../clear-space/utils';
-import { indentFirst, indentFirstExecutable } from '../indent-first/utils';
 import { STORAGE_KEY } from './index';
 
 export default class QuickStyleCommand extends Command {
@@ -20,67 +16,37 @@ export default class QuickStyleCommand extends Command {
 	 * @inheritDoc
 	 */
 	execute(options = {}) {
-		const model = this.editor.model;
+		const editor = this.editor;
 
-		model.change((writer) => {
-			const { textFormat, indentFirst, clearEmpty, clearSpace, softBreakToEnter } = options;
+		const { textFormat, indentFirst, clearEmpty, clearSpace, softBreakToEnter } = options;
 
-			if (textFormat) {
-				this.editor.execute('selectAll');
-				this.editor.execute('removeFormat');
-			}
+		if (textFormat) {
+			editor.execute('selectAll');
+			editor.execute('removeFormat');
+		}
 
-			if (softBreakToEnter) {
-				this._softBreakToEnter(writer);
-			}
+		if (softBreakToEnter) {
+			editor.execute('selectAll');
+			editor.execute('softBreakToEnter');
+		}
 
-			if (clearEmpty) {
-				this._clearEmpty(writer);
-			}
+		if (clearEmpty) {
+			editor.execute('selectAll');
+			editor.execute('clearEmpty');
+		}
 
-			if (clearSpace) {
-				this._clearSpace(writer);
-			}
+		if (clearSpace) {
+			editor.execute('selectAll');
+			editor.execute('clearSpace');
+		}
 
-			if (indentFirst) {
-				this._indentFirst(writer);
-			}
+		if (indentFirst) {
+			editor.execute('selectAll');
+			editor.execute('indentFirst');
+		}
 
-			this.editor.execute('selectAll');
-		});
-
+		editor.execute('selectAll');
 		this._setStorage(options);
-	}
-
-	_indentFirst(writer) {
-		const schema = this.editor.model.schema;
-		const blocks = this._findAllElements().filter((block) => indentFirstExecutable(schema, block));
-		indentFirst(writer, blocks);
-	}
-
-	_clearEmpty(writer) {
-		const blocks = this._findAllElements();
-		blocks.forEach((block) => {
-			clearEmpty(writer, block);
-		});
-	}
-
-	_clearSpace(writer) {
-		const blocks = this._findAllElements();
-		blocks.forEach((block) => {
-			clearSpace(writer, block);
-		});
-	}
-
-	_softBreakToEnter(writer) {
-		const blocks = this._findAllElements();
-		blocks.forEach((block) => {
-			softBreakToEnter(writer, block);
-		});
-	}
-
-	_findAllElements() {
-		return Array.from(this.editor.model.document.getRoot().getChildren());
 	}
 
 	_setStorage(fields) {
