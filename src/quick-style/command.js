@@ -26,6 +26,7 @@ export default class QuickStyleCommand extends Command {
 			const { textFormat, indentFirst, clearEmpty, clearSpace, softBreakToEnter } = options;
 
 			if (textFormat) {
+				this.editor.execute('selectAll');
 				this.editor.execute('removeFormat');
 			}
 
