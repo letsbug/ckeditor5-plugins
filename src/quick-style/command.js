@@ -6,6 +6,7 @@ import { softBreakToEnter } from '../soft-break-to-enter/utils';
 import { clearEmpty } from '../clear-empty/utils';
 import { clearSpace } from '../clear-space/utils';
 import { indentFirst, indentFirstExecutable } from '../indent-first/utils';
+import { STORAGE_KEY } from './index';
 
 export default class QuickStyleCommand extends Command {
 	// /**
@@ -46,6 +47,8 @@ export default class QuickStyleCommand extends Command {
 
 			this.editor.execute('selectAll');
 		});
+
+		this._setStorage(options);
 	}
 
 	_indentFirst(writer) {
@@ -77,5 +80,9 @@ export default class QuickStyleCommand extends Command {
 
 	_findAllElements() {
 		return Array.from(this.editor.model.document.getRoot().getChildren());
+	}
+
+	_setStorage(fields) {
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(fields));
 	}
 }

@@ -174,10 +174,11 @@ export default class QuickStyleForm extends View {
 		return Object.values(this.quickStyleFormValue).some((val) => !!val);
 	}
 
-	resetFormStatus() {
+	resetFormStatus(status) {
 		this.fieldsViews.forEach((view) => {
-			view.isOn = false;
-			this.quickStyleFormValue[view.name] = false;
+			const val = status[view.name];
+			view.isOn = val;
+			this.quickStyleFormValue[view.name] = val;
 		});
 	}
 

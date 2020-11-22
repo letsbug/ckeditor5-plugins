@@ -6,6 +6,7 @@ import QuickStyleUI from './ui';
 import QuickStyleEditing from './editing';
 
 export const ATTRIBUTE = 'quickStyle';
+export const STORAGE_KEY = 'ck-quick-style-pref';
 
 export default class QuickStyle extends Plugin {
 	/**
