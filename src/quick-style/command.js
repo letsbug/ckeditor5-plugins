@@ -22,7 +22,11 @@ export default class QuickStyleCommand extends Command {
 		const model = this.editor.model;
 
 		model.change((writer) => {
-			const { indentFirst, clearEmpty, clearSpace, softBreakToEnter } = options;
+			const { textFormat, indentFirst, clearEmpty, clearSpace, softBreakToEnter } = options;
+
+			if (textFormat) {
+				this.editor.execute('removeFormat');
+			}
 
 			if (softBreakToEnter) {
 				this._softBreakToEnter(writer);
@@ -39,6 +43,8 @@ export default class QuickStyleCommand extends Command {
 			if (indentFirst) {
 				this._indentFirst(writer);
 			}
+
+			this.editor.execute('selectAll');
 		});
 	}
 

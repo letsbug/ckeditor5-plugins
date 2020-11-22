@@ -57,8 +57,8 @@ export function clearSpace(writer, block) {
 		return;
 	}
 
-	const replace = writer.createElement(block.name, Object.fromEntries(block.getAttributes()));
 	const childes = Array.from(block.getChildren());
+	const replace = [];
 
 	childes.forEach((node, i) => {
 		const attrs = Object.fromEntries(node.getAttributes());
@@ -72,12 +72,13 @@ export function clearSpace(writer, block) {
 				text = text.replace(new RegExp(`[${empties}]+$`), '');
 			}
 
-			writer.appendText(text, attrs, replace);
+			replace.push(writer.createText(text, attrs));
 		} else {
-			writer.appendElement(node.name, attrs, replace);
+			replace.push(node);
 		}
+
+		writer.remove(node);
 	});
 
-	writer.insert(replace, block, 'after');
-	writer.remove(block);
+	replace.forEach((n) => writer.append(n, block));
 }

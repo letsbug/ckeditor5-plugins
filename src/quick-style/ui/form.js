@@ -14,6 +14,14 @@ import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
 import '../../../theme/quick-style-form.css';
 import '@ckeditor/ckeditor5-ui/theme/components/responsive-form/responsiveform.css';
 
+const fields = [
+	{ label: '文本格式化', name: 'textFormat' },
+	{ label: '首行缩进', name: 'indentFirst' },
+	{ label: '清除空行', name: 'clearEmpty' },
+	{ label: '清除多余空格', name: 'clearSpace' },
+	{ label: '换行转断行', name: 'softBreakToEnter' },
+];
+
 /**
  * The quick style form view controller class.
  *
@@ -46,6 +54,7 @@ export default class QuickStyleForm extends View {
 		 * @observable
 		 */
 		this.set('quickStyleFormValue', {
+			textFormat: false,
 			indentFirst: false,
 			clearEmpty: false,
 			clearSpace: false,
@@ -53,32 +62,11 @@ export default class QuickStyleForm extends View {
 		});
 
 		/**
-		 * The indentFirst field switch button view
+		 * form fields switch buttons views
 		 *
-		 * @member {SwitchButtonView}
+		 * @type {SwitchButtonView[]}
 		 */
-		this.indentFirstView = this._createSwitches('首行缩进', 'indentFirst');
-
-		/**
-		 * The clearEmpty field switch button view
-		 *
-		 * @member {SwitchButtonView}
-		 */
-		this.clearEmptyView = this._createSwitches('清除空行', 'clearEmpty');
-
-		/**
-		 * The clearSpace field switch button view
-		 *
-		 * @member {SwitchButtonView}
-		 */
-		this.clearSpaceView = this._createSwitches('清除多余空格', 'clearSpace');
-
-		/**
-		 * The softBreakToEnter field switch button view
-		 *
-		 * @member {SwitchButtonView}
-		 */
-		this.softBreakToEnterView = this._createSwitches('换行转断行', 'softBreakToEnter');
+		this.fieldsViews = fields.map(({ label, name }) => this._createSwitches(label, name));
 
 		/**
 		 * The Save button view.
@@ -124,8 +112,13 @@ export default class QuickStyleForm extends View {
 			},
 		});
 
-		const actions = new View(local);
-		actions.setTemplate({
+		/**
+		 * form actions views
+		 *
+		 * @type {View}
+		 */
+		this.actionsView = new View(local);
+		this.actionsView.setTemplate({
 			tag: 'div',
 
 			attributes: {
@@ -144,7 +137,7 @@ export default class QuickStyleForm extends View {
 				tabindex: '-1',
 			},
 
-			children: [this.indentFirstView, this.clearEmptyView, this.clearSpaceView, this.softBreakToEnterView, actions],
+			children: [...this.fieldsViews, this.actionsView],
 		});
 	}
 
@@ -158,8 +151,7 @@ export default class QuickStyleForm extends View {
 			view: this,
 		});
 
-		const childViews = [this.indentFirstView, this.clearEmptyView, this.clearSpaceView, this.softBreakToEnterView, this.saveButtonView, this.cancelButtonView];
-		childViews.forEach((v) => {
+		this.fieldsViews.forEach((v) => {
 			// Register the view as focusable.
 			this._focusables.add(v);
 
@@ -183,17 +175,10 @@ export default class QuickStyleForm extends View {
 	}
 
 	resetFormStatus() {
-		this.indentFirstView.isOn = false;
-		this.clearEmptyView.isOn = false;
-		this.clearSpaceView.isOn = false;
-		this.softBreakToEnterView.isOn = false;
-
-		this.quickStyleFormValue = {
-			indentFirst: false,
-			clearEmpty: false,
-			clearSpace: false,
-			softBreakToEnter: false,
-		};
+		this.fieldsViews.forEach((view) => {
+			view.isOn = false;
+			this.quickStyleFormValue[view.name] = false;
+		});
 	}
 
 	_createSwitches(label, name) {
