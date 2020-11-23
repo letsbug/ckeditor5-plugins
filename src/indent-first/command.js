@@ -2,9 +2,9 @@
  * @module indent-first/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
-import first from '@ckeditor/ckeditor5-utils/src/first';
 import { ATTRIBUTE } from './index';
-import { indentFirst, indentFirstExecutable } from './utils';
+import { excludes, indentFirst, indentFirstExecutable } from './utils';
+import { findFirst } from '../utils';
 
 /**
  * The indent-first command plugin.
@@ -16,12 +16,15 @@ export default class IndentFirstCommand extends Command {
 	 * @inheritDoc
 	 */
 	refresh() {
-		const firstBlock = first(this.editor.model.document.selection.getSelectedBlocks());
-		this.isEnabled = !!firstBlock && indentFirstExecutable(this.editor.model.schema, firstBlock);
+		const first = findFirst(
+			this.editor.model.document.selection.getSelectedBlocks(),
+			(item) => !excludes.includes(item.name)
+		);
+		this.isEnabled = !!first && indentFirstExecutable(this.editor.model.schema, first);
 
 		// 设置按钮状态
-		if (this.isEnabled && firstBlock.hasAttribute(ATTRIBUTE)) {
-			this.value = firstBlock.getAttribute(ATTRIBUTE);
+		if (this.isEnabled && first.hasAttribute(ATTRIBUTE)) {
+			this.value = first.getAttribute(ATTRIBUTE);
 		} else {
 			this.value = null;
 		}

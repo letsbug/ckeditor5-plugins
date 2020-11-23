@@ -1,14 +1,21 @@
 import { ATTRIBUTE } from './index';
 
 /**
+ * Elements that need to be excluded during command execution and condition judgment
+ *
+ * @type {string[]}
+ */
+export const excludes = ['image', 'media', 'table'];
+
+/**
  * Identify whether the indent first button can be executed
  *
  * @param schema
- * @param firstBlock
+ * @param block
  * @returns {boolean}
  */
-export function indentFirstExecutable(schema, firstBlock) {
-	return schema.checkAttribute(firstBlock, ATTRIBUTE);
+export function indentFirstExecutable(schema, block) {
+	return schema.checkAttribute(block, ATTRIBUTE);
 }
 
 /**
