@@ -123,7 +123,7 @@ export function findCommandExecuteType(blocks) {
  * @returns {boolean}
  */
 export function convertFullHalfExecutable(blocks) {
-	return blocks.every(
+	return blocks.some(
 		(b) => !b.isEmpty && !['media, image', 'table'].includes(b.name) && checkNodes(Array.from(b.getChildren()))
 	);
 }
