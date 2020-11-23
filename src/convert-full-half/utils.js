@@ -10,6 +10,13 @@ const dictionary = {
 };
 
 /**
+ * this plugins will be continue when the block is image, media or table
+ *
+ * @type {string[]}
+ */
+const excludes = ['image', 'media', 'table'];
+
+/**
  * Identify whether a string contains full-angle characters
  *
  * @param str
@@ -136,6 +143,10 @@ export function convertFullHalfExecutable(blocks) {
  * @param type {'full'|'half'}
  */
 export function convertFullHalf(writer, block, type) {
+	if (excludes.includes(block.name)) {
+		return;
+	}
+
 	const iterator = block.getChildren();
 	if (!iterator) {
 		return;

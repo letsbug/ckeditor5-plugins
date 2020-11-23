@@ -17,6 +17,7 @@ import { checkFields } from '../utils';
 
 export const fields = [
 	{ label: '文本格式化', name: 'textFormat' },
+	{ label: '半角转全角', name: 'convertHalfFull' },
 	// { label: '清除超链接', name: 'clearLinks' },
 	{ label: '首行缩进', name: 'indentFirst' },
 	{ label: '清除空行', name: 'clearEmpty' },

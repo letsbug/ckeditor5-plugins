@@ -21,7 +21,9 @@ export default class QuickStyleCommand extends Command {
 		const {
 			textFormat,
 			indentFirst,
-			/*clearLinks, convertFullHalf,*/ clearEmpty,
+			/*clearLinks,*/
+			convertHalfFull,
+			clearEmpty,
 			clearSpace,
 			softBreakToEnter,
 		} = options;
@@ -49,6 +51,11 @@ export default class QuickStyleCommand extends Command {
 		if (indentFirst) {
 			editor.execute('selectAll');
 			editor.execute('indentFirst');
+		}
+
+		if (convertHalfFull) {
+			editor.execute('selectAll');
+			editor.execute('convertFullHalf', { type: 'half' });
 		}
 
 		editor.execute('selectAll');
