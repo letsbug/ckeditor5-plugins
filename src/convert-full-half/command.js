@@ -3,7 +3,50 @@
  */
 
 import Command from '@ckeditor/ckeditor5-core/src/command';
+import { convertFullHalf, convertFullHalfExecutable, findCommandExecuteType } from './utils';
 
 export default class ConvertFullHalfCommand extends Command {
-	//
+	/**
+	 * @inheritDoc
+	 */
+	refresh() {
+		const iterator = this.editor.model.document.selection.getSelectedBlocks();
+
+		if (!iterator) {
+			this.isEnabled = false;
+			return;
+		}
+
+		const blocks = Array.from(iterator);
+		this.isEnabled = convertFullHalfExecutable(blocks);
+
+		if (!this.isEnabled) {
+			return;
+		}
+
+		this.value = findCommandExecuteType(blocks);
+	}
+
+	/**
+	 * Executes the command. convert half to full or full to half.
+	 *
+	 * @fires execute
+	 */
+	execute() {
+		const model = this.editor.model;
+		const iterator = model.document.selection.getSelectedBlocks();
+
+		if (!iterator) {
+			return;
+		}
+
+		const blocks = Array.from(iterator);
+		if (!blocks.length) {
+			return;
+		}
+
+		model.change((writer) => {
+			blocks.forEach((block) => convertFullHalf(writer, block, this.value));
+		});
+	}
 }

@@ -1,7 +1,7 @@
 import { ATTRIBUTE } from './index';
 
 /**
- * judgment whether the indent first button can be executed
+ * Identify whether the indent first button can be executed
  *
  * @param schema
  * @param firstBlock

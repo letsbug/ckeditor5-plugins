@@ -3,6 +3,8 @@
  */
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { ATTRIBUTE } from './index';
+import ConvertFullHalfCommand from './command';
 
 export default class ConvertFullHalfEditing extends Plugin {
 	/**
@@ -15,5 +17,8 @@ export default class ConvertFullHalfEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
-	init() {}
+	init() {
+		const editor = this.editor;
+		editor.commands.add(ATTRIBUTE, new ConvertFullHalfCommand(editor));
+	}
 }

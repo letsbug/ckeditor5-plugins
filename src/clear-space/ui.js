@@ -23,7 +23,6 @@ export default class ClearSpaceUI extends Plugin {
 			const command = editor.commands.get(ATTRIBUTE);
 			const buttonView = new ButtonView(locale);
 
-			// TODO 清除空格包含首位全部空格+正文中多余1位的空格？
 			buttonView.set({
 				// label: '清除多余空格和空行',
 				label: '清除多余空格（无可避免会清除有意的空格）',

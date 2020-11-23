@@ -6,6 +6,8 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import ConvertFullHalfUI from './ui';
 import ConvertFullHalfEditing from './editing';
 
+export const ATTRIBUTE = 'convertFullHalf';
+
 export default class ConvertFullHalf extends Plugin {
 	/**
 	 * @inheritDoc

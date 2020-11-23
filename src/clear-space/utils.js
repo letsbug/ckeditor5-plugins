@@ -33,11 +33,15 @@ function hasSpaces(block) {
 		.map((c) => c.data)
 		.join('');
 
-	return new RegExp(`^[${empties}]+`).test(text) || new RegExp(`[${empties}]+$`).test(text) || new RegExp(`[${empties}]{2}`, 'g').test(text);
+	return (
+		new RegExp(`^[${empties}]+`).test(text) ||
+		new RegExp(`[${empties}]+$`).test(text) ||
+		new RegExp(`[${empties}]{2}`, 'g').test(text)
+	);
 }
 
 /**
- * judgment whether the clearSpace button can be executed
+ * Identify whether the clearSpace button can be executed
  *
  * @param blocks
  * @return {boolean}

@@ -24,7 +24,7 @@ function isEmpty(block) {
 }
 
 /**
- * judgment whether the clearEmpty button can be executed
+ * Identify whether the clearEmpty button can be executed
  *
  * @param document
  * @return {boolean}

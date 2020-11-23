@@ -1,5 +1,5 @@
 /**
- * judgment whether the 'soft break to enter' button can be executed
+ * Identify whether the 'soft break to enter' button can be executed
  *
  * @param blocks
  */

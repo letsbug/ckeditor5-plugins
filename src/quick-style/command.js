@@ -18,7 +18,13 @@ export default class QuickStyleCommand extends Command {
 	execute(options = {}) {
 		const editor = this.editor;
 
-		const { textFormat, indentFirst, /*clearLinks, convertFullHalf,*/ clearEmpty, clearSpace, softBreakToEnter } = options;
+		const {
+			textFormat,
+			indentFirst,
+			/*clearLinks, convertFullHalf,*/ clearEmpty,
+			clearSpace,
+			softBreakToEnter,
+		} = options;
 
 		if (textFormat) {
 			editor.execute('selectAll');
