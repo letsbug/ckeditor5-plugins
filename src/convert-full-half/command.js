@@ -22,8 +22,7 @@ export default class ConvertFullHalfCommand extends Command {
 			return;
 		}
 
-		const blocks = Array.from(iterator);
-		this.value = findCommandExecuteType(blocks);
+		this.value = findCommandExecuteType(iterator);
 	}
 
 	/**

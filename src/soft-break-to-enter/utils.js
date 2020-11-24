@@ -6,7 +6,7 @@
 import { findFirst } from '../utils';
 
 export function softBreakToEnterExecutable(iterator) {
-	const first = findFirst(iterator, (block) => findFirst(block.getChildren(), (node) => node.name) === 'softBreak');
+	const first = findFirst(iterator, (block) => findFirst(block.getChildren(), (node) => node.name === 'softBreak'));
 	return !!first;
 }
 
