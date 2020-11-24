@@ -3,8 +3,11 @@
  *
  * @param blocks
  */
-export function softBreakToEnterExecutable(blocks) {
-	return blocks.some((block) => Array.from(block.getChildren()).some((child) => child.name === 'softBreak'));
+import { findFirst } from '../utils';
+
+export function softBreakToEnterExecutable(iterator) {
+	const first = findFirst(iterator, (block) => findFirst(block.getChildren(), (node) => node.name) === 'softBreak');
+	return !!first;
 }
 
 /**

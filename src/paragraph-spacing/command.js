@@ -2,15 +2,15 @@
  * @module paragraph-spacing/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
-import first from '@ckeditor/ckeditor5-utils/src/first';
 import { ATTRIBUTE } from './index';
+import { findFirst } from '../utils';
 
 export default class ParagraphSpacingCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */
 	refresh() {
-		const firstBlock = first(this.editor.model.document.selection.getSelectedBlocks());
+		const firstBlock = findFirst(this.editor.model.document.selection.getSelectedBlocks(), allowedBlock);
 
 		this.isEnabled = !!firstBlock && this._canSetAttribute(firstBlock);
 		this.value = this.isEnabled && firstBlock.hasAttribute(ATTRIBUTE) ? firstBlock.getAttribute(ATTRIBUTE) : 'Default';
@@ -43,14 +43,18 @@ export default class ParagraphSpacingCommand extends Command {
 	}
 }
 
+function allowedBlock(block) {
+	return !['image', 'table', 'media'].includes(block.name);
+}
+
 function removeParagraphSpacingFromSelection(blocks, writer) {
 	for (const block of blocks) {
-		writer.removeAttribute(ATTRIBUTE, block);
+		allowedBlock(block) && writer.removeAttribute(ATTRIBUTE, block);
 	}
 }
 
 function setParagraphSpacingOnSelection(blocks, writer, value) {
 	for (const block of blocks) {
-		writer.setAttribute(ATTRIBUTE, value, block);
+		allowedBlock(block) && writer.setAttribute(ATTRIBUTE, value, block);
 	}
 }

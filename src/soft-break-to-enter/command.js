@@ -9,8 +9,7 @@ export default class SoftBreakToEnterCommand extends Command {
 	 * @inheritDoc
 	 */
 	refresh() {
-		const blocks = this.editor.model.document.selection.getSelectedBlocks();
-		this.isEnabled = !!blocks && softBreakToEnterExecutable(Array.from(blocks));
+		this.isEnabled = softBreakToEnterExecutable(this.editor.model.document.selection.getSelectedBlocks());
 	}
 
 	/**

@@ -3,6 +3,8 @@
  *
  * @type {{half: string, full: string, halfEscaped: string}}
  */
+import { findFirst } from '../utils';
+
 const dictionary = {
 	full: '【】。；，：“”‘’（）！？《》',
 	half: `[].;,:""''()!?<>`,
@@ -43,7 +45,8 @@ function hasHalf(str) {
  * @returns {boolean}
  */
 function checkNodes(nodes) {
-	return nodes.some((node) => hasFull(node.data) || hasHalf(node.data));
+	const first = findFirst(nodes, (item) => hasFull(item.data) || hasHalf(item.data));
+	return !!first;
 }
 
 /**
@@ -90,35 +93,22 @@ function convertCycler(node, type) {
 export function findCommandExecuteType(blocks) {
 	let type = null;
 
-	for (let i = 0; i < blocks.length; i++) {
-		const block = blocks[i];
-		if (block.isEmpty) {
-			continue;
+	const findFirstNode = (node) => {
+		if (!node.is('$text')) {
+			return false;
 		}
 
-		const nodes = Array.from(block.getChildren());
-		if (!nodes.length) {
-			continue;
+		const data = node.data;
+		let matched = data.match(new RegExp(`[${dictionary.full}${dictionary.halfEscaped}]`));
+		if (matched && matched.length) {
+			type = dictionary.full.includes(matched[0]) ? 'full' : 'half';
+			return true;
 		}
 
-		for (let j = 0; j < nodes.length; j++) {
-			const node = nodes[j];
-			if (!node.is('$text')) {
-				continue;
-			}
+		return false;
+	};
 
-			const data = node.data;
-			let matched = data.match(new RegExp(`[${dictionary.full}${dictionary.halfEscaped}]`));
-			if (matched && matched.length) {
-				type = dictionary.full.includes(matched[0]) ? 'full' : 'half';
-				break;
-			}
-		}
-
-		if (type) {
-			break;
-		}
-	}
+	findFirst(blocks, (block) => !block.isEmpty && findFirst(block.getChildren(), findFirstNode));
 
 	return type;
 }
@@ -126,13 +116,13 @@ export function findCommandExecuteType(blocks) {
 /**
  * Identify whether the selections can be convert characters
  *
- * @param blocks
+ * @param iterator
  * @returns {boolean}
  */
-export function convertFullHalfExecutable(blocks) {
-	return blocks.some(
-		(b) => !b.isEmpty && !['media, image', 'table'].includes(b.name) && checkNodes(Array.from(b.getChildren()))
-	);
+export function convertFullHalfExecutable(iterator) {
+	const callback = (item) =>
+		!item.isEmpty && !['media, image', 'table'].includes(item.name) && checkNodes(item.getChildren());
+	return !!findFirst(iterator, callback);
 }
 
 /**

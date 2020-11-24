@@ -2,15 +2,15 @@
  * @module line-height/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
-import first from '@ckeditor/ckeditor5-utils/src/first';
 import { ATTRIBUTE } from './index';
+import { findFirst } from '../utils';
 
 export default class LineHeightCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */
 	refresh() {
-		const firstBlock = first(this.editor.model.document.selection.getSelectedBlocks());
+		const firstBlock = findFirst(this.editor.model.document.selection.getSelectedBlocks(), allowedBlock);
 
 		this.isEnabled = !!firstBlock && this._canSetLineHeight(firstBlock);
 		this.value = this.isEnabled && firstBlock.hasAttribute(ATTRIBUTE) ? firstBlock.getAttribute(ATTRIBUTE) : 'Default';
@@ -42,14 +42,18 @@ export default class LineHeightCommand extends Command {
 	}
 }
 
+function allowedBlock(block) {
+	return !['image', 'table', 'media'].includes(block.name);
+}
+
 function removeLineHeightFromSelection(blocks, writer) {
 	for (const block of blocks) {
-		writer.removeAttribute(ATTRIBUTE, block);
+		allowedBlock(block) && writer.removeAttribute(ATTRIBUTE, block);
 	}
 }
 
 function setLineHeightOnSelection(blocks, writer, lineHeight) {
 	for (const block of blocks) {
-		writer.setAttribute(ATTRIBUTE, lineHeight, block);
+		allowedBlock(block) && writer.setAttribute(ATTRIBUTE, lineHeight, block);
 	}
 }

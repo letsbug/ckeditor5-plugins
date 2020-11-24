@@ -9,7 +9,16 @@ export default class ClearEmptyCommand extends Command {
 	 * @inheritDoc
 	 */
 	refresh() {
-		this.isEnabled = clearEmptyExecutable(this.editor.model.document);
+		const document = this.editor.model.document;
+		const root = document.getRoot();
+
+		// When the data is empty, there is a default <p> tag.
+		if (root.childCount < 2) {
+			this.isEnabled = false;
+			return;
+		}
+
+		this.isEnabled = clearEmptyExecutable(document.selection.getSelectedBlocks());
 	}
 
 	/**
@@ -18,7 +27,8 @@ export default class ClearEmptyCommand extends Command {
 	execute(/*options = {}*/) {
 		const model = this.editor.model;
 		const iterator = model.document.selection.getSelectedBlocks();
-		if (!iterator) {
+		iterator.next();
+		if (iterator.done) {
 			return;
 		}
 

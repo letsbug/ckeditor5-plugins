@@ -17,13 +17,12 @@ export default class ConvertFullHalfCommand extends Command {
 			return;
 		}
 
-		const blocks = Array.from(iterator);
-		this.isEnabled = convertFullHalfExecutable(blocks);
-
+		this.isEnabled = convertFullHalfExecutable(iterator);
 		if (!this.isEnabled) {
 			return;
 		}
 
+		const blocks = Array.from(iterator);
 		this.value = findCommandExecuteType(blocks);
 	}
 

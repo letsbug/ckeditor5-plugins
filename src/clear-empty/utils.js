@@ -1,3 +1,5 @@
+import { findFirst } from '../utils';
+
 const excludes = ['image', 'media', 'table'];
 
 /**
@@ -26,21 +28,12 @@ function isEmpty(block) {
 /**
  * Identify whether the clearEmpty button can be executed
  *
- * @param document
+ * @param iterators
  * @return {boolean}
  */
-export function clearEmptyExecutable(document) {
-	const root = document.getRoot();
-	if (root.childCount < 2) {
-		return false;
-	}
-
-	const iterators = document.selection.getSelectedBlocks();
-	if (!iterators) {
-		return false;
-	}
-	// When the data is empty, there is a default <p> tag.
-	return Array.from(iterators).some((b) => b.isEmpty || (!inExcludes(b) && isEmpty(b)));
+export function clearEmptyExecutable(iterators) {
+	const first = findFirst(iterators, (item) => item.isEmpty || (!inExcludes(item) && isEmpty(item)));
+	return !!first;
 }
 
 /**
