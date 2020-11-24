@@ -27,10 +27,6 @@ export default class ClearEmptyCommand extends Command {
 	execute(/*options = {}*/) {
 		const model = this.editor.model;
 		const iterator = model.document.selection.getSelectedBlocks();
-		iterator.next();
-		if (iterator.done) {
-			return;
-		}
 
 		model.change((writer) => {
 			Array.from(iterator).forEach((block) => clearEmpty(writer, block));

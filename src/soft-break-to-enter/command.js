@@ -17,15 +17,10 @@ export default class SoftBreakToEnterCommand extends Command {
 	 */
 	execute() {
 		const model = this.editor.model;
-		const doc = model.document;
+		const iterator = model.document.selection.getSelectedBlocks();
 
 		model.change((writer) => {
-			const blocks = Array.from(doc.selection.getSelectedBlocks());
-			if (!blocks) {
-				return;
-			}
-
-			blocks.forEach((block) => softBreakToEnter(writer, block));
+			Array.from(iterator).forEach((block) => softBreakToEnter(writer, block));
 		});
 	}
 }

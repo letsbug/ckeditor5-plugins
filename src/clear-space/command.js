@@ -9,8 +9,7 @@ export default class ClearSpaceCommand extends Command {
 	 * @inheritDoc
 	 */
 	refresh() {
-		const iterator = this.editor.model.document.selection.getSelectedBlocks();
-		this.isEnabled = clearSpaceExecutable(iterator);
+		this.isEnabled = clearSpaceExecutable(this.editor.model.document.selection.getSelectedBlocks());
 	}
 
 	/**
@@ -19,19 +18,9 @@ export default class ClearSpaceCommand extends Command {
 	execute(/*options = {}*/) {
 		const model = this.editor.model;
 		const iterator = model.document.selection.getSelectedBlocks();
-		iterator.next();
-
-		if (iterator.done) {
-			return;
-		}
-
-		const blocks = Array.from(iterator);
-		if (!blocks.length) {
-			return;
-		}
 
 		model.change((writer) => {
-			blocks.forEach((block) => clearSpace(writer, block));
+			Array.from(iterator).forEach((block) => clearSpace(writer, block));
 		});
 	}
 }

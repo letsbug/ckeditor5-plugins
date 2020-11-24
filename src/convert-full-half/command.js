@@ -34,19 +34,10 @@ export default class ConvertFullHalfCommand extends Command {
 	execute(options = {}) {
 		const model = this.editor.model;
 		const iterator = model.document.selection.getSelectedBlocks();
-
-		if (!iterator) {
-			return;
-		}
-
-		const blocks = Array.from(iterator);
-		if (!blocks.length) {
-			return;
-		}
-
 		const type = options.type || this.value;
+
 		model.change((writer) => {
-			blocks.forEach((block) => convertFullHalf(writer, block, type));
+			Array.from(iterator).forEach((block) => convertFullHalf(writer, block, type));
 		});
 	}
 }
