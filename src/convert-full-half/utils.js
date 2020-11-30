@@ -76,7 +76,7 @@ function convertCycler(node, type) {
 	};
 	matchedArr.forEach(([char]) => {
 		const position = dictionary[type].indexOf(char);
-		str = str.replaceAll(char, dictionary[standby[type]].charAt(position));
+		str = str.replace(new RegExp(`${char}`, 'g'), dictionary[standby[type]].charAt(position));
 	});
 
 	return str;
