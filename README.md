@@ -25,7 +25,7 @@
 ```bash
 # 目前自用采用npm私服安装，未发布到npm官方仓库，可以使用如下命令安装：
 npm i -S https://github.com/letsbug/ckeditor5-plugins.git
-# or
+# or (if you have configured github's SSH key locally)
 npm i -S git://git@github.com:letsbug/ckeditor5-plugins.git
 ```
 
@@ -158,5 +158,6 @@ CKEDITOR.DocumentBuild.create(document.querySelector('.editor-body'), configs).t
   document.querySelector('.editor-toolbar').appendChild(editor.ui.view.toolbar.element);
 });
 ```
-
+<br>
+<br>
 更多文档资料请移步CKEditor5官方文档 [https://ckeditor.com/docs/ckeditor5/latest/](https://ckeditor.com/docs/ckeditor5/latest/)
