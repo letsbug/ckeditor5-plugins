@@ -17,7 +17,7 @@
 ```
 
 # Preview 呈现结果
-![ckeditor5-plugins build screenshot](https://raw.githubusercontent.com/letsbug/ckeditor5-build-full/master/demo.png)
+![ckeditor5-plugins build screenshot](./demo.png)
 
 # Usage 食用方法
 
