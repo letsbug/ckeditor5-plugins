@@ -25,6 +25,7 @@
 ```bash
 # 目前自用采用npm私服安装，未发布到npm官方仓库，可以使用如下命令安装：
 npm i -S https://github.com/letsbug/ckeditor5-plugins.git
+
 # or (if you have configured github's SSH key locally)
 npm i -S git://git@github.com:letsbug/ckeditor5-plugins.git
 ```

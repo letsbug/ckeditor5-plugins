@@ -6,9 +6,9 @@
 import { findFirst } from '../utils';
 
 const dictionary = {
-	full: '【】。；，：“”‘’（）！？《》',
-	half: `[].;,:""''()!?<>`,
-	halfEscaped: `\\[\\]\\.;,:""''()!?<>`,
+	full: '《》（）【】。？！；，：“”‘’',
+	half: `<>()[].?!;,:""''`,
+	halfEscaped: `\\<\\>\\(\\)\\[\\]\\.\\?\\!;,:""''`,
 };
 
 /**
@@ -76,7 +76,11 @@ function convertCycler(node, type) {
 	};
 	matchedArr.forEach(([char]) => {
 		const position = dictionary[type].indexOf(char);
-		str = str.replace(new RegExp(`${char}`, 'g'), dictionary[standby[type]].charAt(position));
+		let _regStr = `${char}`;
+		if (['(', ')', '[', ']', '.', '?'].includes(char)) {
+			_regStr = '\\' + _regStr;
+		}
+		str = str.replace(new RegExp(_regStr, 'g'), dictionary[standby[type]].charAt(position));
 	});
 
 	return str;
