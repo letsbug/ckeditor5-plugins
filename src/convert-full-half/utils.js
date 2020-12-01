@@ -77,7 +77,7 @@ function convertCycler(node, type) {
 	matchedArr.forEach(([char]) => {
 		const position = dictionary[type].indexOf(char);
 		let _regStr = `${char}`;
-		if (['(', ')', '[', ']', '.', '?'].includes(char)) {
+		if (['<', '>', '(', ')', '[', ']', '.', '?', '!'].includes(char)) {
 			_regStr = '\\' + _regStr;
 		}
 		str = str.replace(new RegExp(_regStr, 'g'), dictionary[standby[type]].charAt(position));
