@@ -1,19 +1,23 @@
 # CKEditor5-plugins
 基于ckeditor5的，适用于自定义构建的插件包。要使用此插件包，则不建议直接使用官方的classic、document、inline、balloon等构建，建议自定义构建
 
+[![npm version](https://badge.fury.io/js/%40ckeditor%2Fckeditor5-build-classic.svg)](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic)
+[![Dependency Status](https://david-dm.org/letsbug/ckeditor5-plugins/status.svg)](https://david-dm.org/letsbug/ckeditor5-plugins)
+[![devDependency Status](https://david-dm.org/letsbug/ckeditor5-plugins/dev-status.svg)](https://david-dm.org/letsbug/ckeditor5-plugins?type=dev)
+
 # features 包含功能
-```bash
+```text
 ├── src
-│   ├── clear-empty         清除空行;
-│   ├── clear-space         清除多余空格;
-│   ├── convert-full-half   全角、半角相互转换;
-│   ├── extensions          自定义扩展;
-│   ├── indent-first        首行缩进;
-│   ├── line-height         行高控制;
-│   ├── paragraph-spacing   段落间距控制;
-│   ├── quick-style         快速排版;
-│   ├── simple-adapter      重写官方的SimpleUploadAdapter，支持文件字段自定义;
-│   ├── soft-break-to-enter 软换行转硬换行;
+│   ├── clear-empty         清除空行
+│   ├── clear-space         清除多余空格
+│   ├── convert-full-half   全角、半角相互转换
+│   ├── extensions          自定义扩展
+│   ├── indent-first        首行缩进
+│   ├── line-height         行高控制
+│   ├── paragraph-spacing   段落间距控制
+│   ├── quick-style         快速排版
+│   ├── simple-adapter      重写官方的SimpleUploadAdapter，支持文件字段自定义
+│   ├── soft-break-to-enter 软换行转硬换行
 ```
 
 # Preview 呈现结果
