@@ -17,7 +17,7 @@ export default class ConvertFullHalfCommand extends Command {
 			return;
 		}
 
-		this.isEnabled = convertFullHalfExecutable(iterator);
+		this.isEnabled = convertFullHalfExecutable(this.editor.model.document.selection.getSelectedBlocks());
 		if (!this.isEnabled) {
 			return;
 		}
