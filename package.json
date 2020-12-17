@@ -1,5 +1,5 @@
 {
-  "name": "@hlw/ckeditor5-plugins",
+  "name": "@hlx/ckeditor5-plugins",
   "version": "23.1.0",
   "description": "custom ckeditor5 plugins (eg: indent first line, custom format, ad so on...)",
   "scripts": {
