@@ -2,7 +2,6 @@
  * @module quick-style/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
-import { STORAGE_KEY } from './index';
 
 export default class QuickStyleCommand extends Command {
 	// /**
@@ -59,10 +58,5 @@ export default class QuickStyleCommand extends Command {
 		}
 
 		editor.execute('selectAll');
-		this._setStorage(options);
-	}
-
-	_setStorage(fields) {
-		localStorage.setItem(STORAGE_KEY, JSON.stringify(fields));
 	}
 }

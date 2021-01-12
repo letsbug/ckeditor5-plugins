@@ -45,7 +45,12 @@ export default class QuickStyleUI extends Plugin {
 		dropdown.panelView.children.add(form);
 
 		button.on('execute', () => {
-			editor.execute('quickStyle', form.quickStyleFormValue);
+			const vals = this._getStorage();
+			if (!vals || Object.values(vals).every((executable) => !executable)) {
+				button.fire('open');
+				return;
+			}
+			editor.execute('quickStyle', vals);
 			editor.editing.view.focus();
 		});
 
@@ -66,7 +71,9 @@ export default class QuickStyleUI extends Plugin {
 				return;
 			}
 
-			editor.execute('quickStyle', form.quickStyleFormValue);
+			const vals = form.quickStyleFormValue;
+			editor.execute('quickStyle', vals);
+			this._setStorage(vals);
 			closeDropdown();
 		});
 
@@ -94,5 +101,9 @@ export default class QuickStyleUI extends Plugin {
 		} catch {
 			return null;
 		}
+	}
+
+	_setStorage(fields) {
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(fields));
 	}
 }
