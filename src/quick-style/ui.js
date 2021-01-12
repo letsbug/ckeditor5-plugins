@@ -6,6 +6,7 @@ import QuickStyleForm from './ui/form';
 import { ATTRIBUTE, STORAGE_KEY } from './index';
 import { createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
 import Icon from '../../theme/icons/magic-wand.svg';
+import SplitButtonView from '@ckeditor/ckeditor5-ui/src/dropdown/button/splitbuttonview';
 
 export default class QuickStyleUI extends Plugin {
 	/**
@@ -23,7 +24,7 @@ export default class QuickStyleUI extends Plugin {
 		const command = editor.commands.get(ATTRIBUTE);
 
 		editor.ui.componentFactory.add(ATTRIBUTE, (locale) => {
-			const dropdown = createDropdown(locale);
+			const dropdown = createDropdown(locale, SplitButtonView);
 			const quickStyleForm = new QuickStyleForm(locale);
 
 			this._setupDropdown(dropdown, quickStyleForm, command);
@@ -38,7 +39,15 @@ export default class QuickStyleUI extends Plugin {
 		const button = dropdown.buttonView;
 
 		dropdown.bind('isEnabled').to(command);
+		// dropdown
+		// 	.bind('isEnabled')
+		// 	.to(command, 'value', (val) => !!val && Object.keys(val).length && Object.values(val).length);
 		dropdown.panelView.children.add(form);
+
+		button.on('execute', () => {
+			editor.execute('quickStyle', form.quickStyleFormValue);
+			editor.editing.view.focus();
+		});
 
 		button.set({
 			label: '快速排版',
