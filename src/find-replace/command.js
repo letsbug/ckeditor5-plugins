@@ -4,24 +4,27 @@
 
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import { getIndicesOf } from './utils';
-import { scrollViewportToShowTarget } from '@ckeditor/ckeditor5-utils/src/dom/scroll';
 import { CURRENT_MARKER, SEARCH_MARKER } from './index';
+import { scrollViewportToShowTarget } from '@ckeditor/ckeditor5-utils/src/dom/scroll';
 
 export default class FindReplaceCommand extends Command {
 	/**
 	 * @inheritDoc
 	 * @param {Object} options
-	 * @param {'find' | 'replace' | 'replaceAll' | 'reset'} options.type
-	 * @param {'prev' | 'next'} options.position
-	 * @param {string[] | module:utils/focustracker~FocusTracker} options.key
-	 * @param {string} options.replace
+	 * @param {'find' | 'replace' | 'replaceAll' | 'reset'} [options.type]
+	 * @param {'prev' | 'next' | 'none'} [options.position]
+	 * @param {string[] | module:ui/labeledfield~LabeledFieldView} [options.key]
+	 * @param {string | module:ui/labeledfield~LabeledFieldView} [options.replace]
 	 */
 	execute(options = {}) {
-		const { type, position, key, replace } = options;
+		const { type, position, key, replace } = Object.assign(
+			{ type: 'reset', position: 'none', key: [], replace: '' },
+			options
+		);
 
 		switch (type) {
 			case 'find':
-				this._find(key, position === 'prev' ? -1 : 1);
+				this._find(key, position === 'prev' ? -1 : position === 'next' ? 1 : 0);
 				break;
 			case 'replace':
 				this._replace(key, replace);
@@ -30,9 +33,26 @@ export default class FindReplaceCommand extends Command {
 				this._replaceAll(key, replace);
 				break;
 			case 'reset':
-				this._resetStatus(key, replace);
+				this._resetStatus();
 				break;
 		}
+	}
+
+	_scrollTo(marker) {
+		if (!marker) {
+			return;
+		}
+
+		this.editor.model.change((writer) => {
+			this._removeCurrentSearchMarker(writer);
+			this.currentSearchMarker = writer.addMarker(CURRENT_MARKER, {
+				range: marker.getRange(),
+				usingOperation: false,
+			});
+		});
+		const viewRange = this.editor.editing.mapper.toViewRange(marker.getRange());
+		const domRange = this.editor.editing.view.domConverter.viewRangeToDom(viewRange);
+		scrollViewportToShowTarget({ target: domRange, viewportOffset: 130 });
 	}
 
 	_isSameSearch(values, markers) {
@@ -94,24 +114,6 @@ export default class FindReplaceCommand extends Command {
 		const currentMarker = markers[this.currentSearchIndex];
 		this._scrollTo(currentMarker);
 		return currentMarker;
-	}
-
-	_scrollTo(marker) {
-		const editor = this.editor;
-		if (!marker) {
-			return;
-		}
-
-		editor.model.change((writer) => {
-			this._removeCurrentSearchMarker(writer);
-			this.currentSearchMarker = writer.addMarker(CURRENT_MARKER, {
-				range: marker.getRange(),
-				usingOperation: false,
-			});
-		});
-		const viewRange = editor.editing.mapper.toViewRange(marker.getRange());
-		const domRange = editor.editing.view.domConverter.viewRangeToDom(viewRange);
-		scrollViewportToShowTarget({ target: domRange, viewportOffset: 130 });
 	}
 
 	_resetStatus(findField, replaceField) {
