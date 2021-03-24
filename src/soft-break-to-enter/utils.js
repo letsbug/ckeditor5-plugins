@@ -27,18 +27,24 @@ function resetReplace(writer, block) {
  * @param block
  */
 export function softBreakToEnter(writer, block) {
-	const iterator = block.getChildren();
-	if (!iterator) {
+	const childes = Array.from(block.getChildren());
+	if (!childes.length) {
 		return;
 	}
 
-	const childes = Array.from(iterator);
-	if (childes.every((child) => child.name !== 'softBreak')) {
+	const breaks = childes.filter((child) => child.name === 'softBreak');
+	if (!breaks.length) {
+		return;
+	}
+
+	if (breaks.length === 1) {
+		writer.remove(breaks[0]);
 		return;
 	}
 
 	let replace = resetReplace(writer, block);
 	let lastInsert = null;
+
 	childes.forEach((child, i) => {
 		const attrs = Object.fromEntries(child.getAttributes());
 
