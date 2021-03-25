@@ -1,6 +1,6 @@
 {
   "name": "@hlx/ckeditor5-plugins",
-  "version": "26.0.0",
+  "version": "27.0.0",
   "description": "custom ckeditor5 plugins (eg: indent first line, custom format, ad so on...)",
   "scripts": {
     "lint": "eslint --quiet '**/*.js' --fix",
@@ -29,13 +29,13 @@
   },
   "homepage": "https://github.com/letsbug/ckeditor5-plugins#readme",
   "dependencies": {
-    "@ckeditor/ckeditor5-core": "^26.0.0",
-    "@ckeditor/ckeditor5-engine": "^26.0.0",
-    "@ckeditor/ckeditor5-ui": "^26.0.0",
-    "@ckeditor/ckeditor5-upload": "^26.0.0"
+    "@ckeditor/ckeditor5-core": "^27.0.0",
+    "@ckeditor/ckeditor5-engine": "^27.0.0",
+    "@ckeditor/ckeditor5-ui": "^27.0.0",
+    "@ckeditor/ckeditor5-upload": "^27.0.0"
   },
   "devDependencies": {
-    "@ckeditor/ckeditor5-utils": "^26.0.0",
+    "@ckeditor/ckeditor5-utils": "^27.0.0",
     "eslint": "^7.22.0",
     "eslint-config-ckeditor5": "^3.1.0",
     "eslint-config-prettier": "^8.1.0",
