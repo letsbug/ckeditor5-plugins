@@ -2,43 +2,40 @@
  * @module clear-empty/command
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
-import { findFirst } from '../utils';
 
 export default class ClearEmptyCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */
-	refresh() {
-		const document = this.editor.model.document;
-		const root = document.getRoot();
-
-		// When the data is empty, there is a default <p> tag.
-		if (root.childCount < 2) {
-			this.isEnabled = false;
-			return;
-		}
-
-		this.isEnabled = this._executable(document.selection.getSelectedBlocks());
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	execute(/*options = {}*/) {
 		const model = this.editor.model;
-		const iterator = model.document.selection.getSelectedBlocks();
+		let data = this.editor.getData();
+		data = data.replace(/<p([^>])*>(\s|&nbsp;|<\/?br>)*<\/p>/g, '');
+		const viewFragment = this.editor.data.processor.toView(data);
+		const modelFragment = this.editor.data.toModel(viewFragment);
+		model.insertContent(modelFragment, model.createRangeIn(model.document.getRoot()));
 
-		model.change((writer) => {
-			for (const block of iterator) {
-				if (this._inExcludes(block)) {
-					continue;
-				}
-				if (block.isEmpty || this._isEmpty(block)) {
-					const range = writer.createRangeOn(block);
-					writer.remove(range);
-				}
-			}
-		});
+		// const range = model.createRangeIn(model.document.getRoot());
+		//
+		// for (const walker of range.getWalker()) {
+		// 	console.log(walker);
+		// }
+		// const iterator = model.document.getRoot().getChildren();
+
+		// const batch = model.createBatch('transparent');
+		// for (const element of iterator) {
+		// 	if (this._inExcludes(element)) {
+		// 		continue;
+		// 	}
+		// 	if (element.isEmpty || this._isEmpty(element)) {
+		// 		// TODO 'transparent' cannot execute 'undo' command
+		// 		// TODO 'Default' is treated as multiple batches, and the number of batches is the length of 'iterator', It's no different than using 'change' directly
+		// 		// TODO 'Invalid value used as weak map key' error in custom batch execution of 'undo' command
+		// 		model.enqueueChange('transparent', (writer) => {
+		// 			writer.remove(element);
+		// 		});
+		// 	}
+		// }
 	}
 
 	/**
@@ -62,16 +59,5 @@ export default class ClearEmptyCommand extends Command {
 			.map((c) => c.data)
 			.join('');
 		return /^\s*$/.test(text);
-	}
-
-	/**
-	 * Identify whether the clearEmpty button can be executed
-	 *
-	 * @param iterators
-	 * @return {boolean}
-	 */
-	_executable(iterators) {
-		const first = findFirst(iterators, (item) => item.isEmpty || (!this._inExcludes(item) && this._isEmpty(item)));
-		return !!first;
 	}
 }

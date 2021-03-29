@@ -56,11 +56,13 @@ export default class ConvertFullHalfCommand extends Command {
 					continue;
 				}
 
+				// **Note** "textNode.getPath()" return [number, number]: [witch paragraph, start of "textNode" in paragraph]
+				const base = textNode.getPath()[1] || 0;
 				const start = textNode.data.indexOf(text);
 				const end = textNode.data.lastIndexOf(text);
 				const range = writer.createRange(
-					writer.createPositionAt(textNode.parent, ~start ? start : textNode.startOffset),
-					writer.createPositionAt(textNode.parent, ~end ? end + text.length : textNode.endOffset)
+					writer.createPositionAt(textNode.parent, ~start ? base + start : textNode.startOffset),
+					writer.createPositionAt(textNode.parent, ~end ? base + end + text.length : textNode.endOffset)
 				);
 				let replace = text;
 
