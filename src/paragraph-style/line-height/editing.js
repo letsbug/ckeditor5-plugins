@@ -1,28 +1,24 @@
 /**
- * @module paragraph-spacing/editing
+ * @module line-height/editing
  */
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ParagraphSpacingCommand from './command';
-import { buildDefinition, isSupported } from '../line-height/utils';
+import { isSupported, buildDefinition } from '../utils';
+import LineHeightCommand from './command';
 import { ATTRIBUTE } from './index';
 
-export default class ParagraphSpacingEditing extends Plugin {
+export default class LineHeightEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
 	static get pluginName() {
-		return 'ParagraphSpacingEditing';
+		return 'LineHeightEditing';
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	constructor(editor) {
 		super(editor);
 
 		editor.config.define(ATTRIBUTE, {
-			options: ['Default', 10, 20, 30, 40, 50],
-			unit: 'px',
+			options: ['Default', 1, 2, 3, 4, 5],
 		});
 	}
 
@@ -35,12 +31,12 @@ export default class ParagraphSpacingEditing extends Plugin {
 
 		// Filter out unsupported options.
 		const enabledOptions = editor.config
-			.get('paragraphSpacing.options')
+			.get('lineHeight.options')
 			.map((option) => String(option))
 			.filter(isSupported); // filter
-		let unit = editor.config.get('paragraphSpacing.unit') || 'px';
-		if (unit && unit !== 'px' && unit !== '%') {
-			unit = 'px';
+		let unit = editor.config.get('lineHeight.unit') || null;
+		if (unit && unit !== 'px') {
+			unit = null;
 		}
 
 		// Allow alignment attribute on all blocks.
@@ -49,6 +45,6 @@ export default class ParagraphSpacingEditing extends Plugin {
 
 		const definition = buildDefinition(enabledOptions, unit, ATTRIBUTE);
 		editor.conversion.attributeToAttribute(definition);
-		editor.commands.add(ATTRIBUTE, new ParagraphSpacingCommand(editor));
+		editor.commands.add(ATTRIBUTE, new LineHeightCommand(editor));
 	}
 }

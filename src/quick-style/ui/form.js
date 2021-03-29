@@ -13,7 +13,6 @@ import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
 
 import '../../../theme/quick-style-form.css';
 import '@ckeditor/ckeditor5-ui/theme/components/responsive-form/responsiveform.css';
-import { checkFields } from '../utils';
 
 export const fields = [
 	{ label: '文本格式化', name: 'textFormat' },
@@ -29,6 +28,15 @@ function generateObserver() {
 	const obj = {};
 	fields.forEach(({ name }) => (obj[name] = false));
 	return obj;
+}
+/**
+ * check fields when the quickStyle executes
+ *
+ * @param obj
+ * @returns {boolean}
+ */
+function checkFields(obj) {
+	return !!obj && Object.keys(obj).every((key) => fields.some((f) => f.name === key));
 }
 
 /**

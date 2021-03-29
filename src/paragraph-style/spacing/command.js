@@ -3,7 +3,7 @@
  */
 import Command from '@ckeditor/ckeditor5-core/src/command';
 import { ATTRIBUTE } from './index';
-import { findFirst } from '../utils';
+import { findFirst } from '../../utils';
 
 export default class ParagraphSpacingCommand extends Command {
 	/**
