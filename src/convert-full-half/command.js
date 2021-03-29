@@ -77,6 +77,8 @@ export default class ConvertFullHalfCommand extends Command {
 				}
 				model.insertContent(writer.createText(replace), range);
 			}
+
+			writer.setSelection(this.range);
 		});
 	}
 
