@@ -33,7 +33,16 @@ export default class QuickStyleCommand extends Command {
 		model.change((writer) => {
 			this._resetRange(model, writer);
 
-			Object.keys(options).forEach((option) => {
+			const sorted = [
+				'removeFormat',
+				'convertFullHalf',
+				'softBreakToEnter',
+				'clearEmpty',
+				'clearSpace',
+				'indentFirst',
+			].filter((op) => Object.keys(options).includes(op));
+
+			sorted.forEach((option) => {
 				if (options[option]) {
 					editor.execute(option, params[option] || null);
 					this._resetRange(model, writer);
