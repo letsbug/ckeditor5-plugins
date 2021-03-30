@@ -13,50 +13,37 @@ export default class QuickStyleCommand extends Command {
 
 	/**
 	 * @inheritDoc
+	 *
+	 * @param {object} [options]
+	 * @param {boolean} [options.removeFormat] Whether or not to format text
+	 * @param {boolean} [options.indentFirst] Whether to indent the first line
+	 * @param {boolean} [options.convertFullHalf] Whether to execute the half to full command
+	 * @param {boolean} [options.clearEmpty] Whether to execute the clear space command
+	 * @param {boolean} [options.clearSpace] Whether to execute the clear empty line command
+	 * @param {boolean} [options.softBreakToEnter] Whether to execute the soft break to enter command
 	 */
 	execute(options = {}) {
 		const editor = this.editor;
+		const model = editor.model;
 
-		const {
-			textFormat,
-			indentFirst,
-			/*clearLinks,*/
-			convertHalfFull,
-			clearEmpty,
-			clearSpace,
-			softBreakToEnter,
-		} = options;
+		const params = {
+			convertFullHalf: { type: 'half' },
+		};
 
-		if (textFormat) {
-			editor.execute('selectAll');
-			editor.execute('removeFormat');
-		}
+		model.change((writer) => {
+			this._resetRange(model, writer);
 
-		if (softBreakToEnter) {
-			editor.execute('selectAll');
-			editor.execute('softBreakToEnter');
-		}
+			Object.keys(options).forEach((option) => {
+				if (options[option]) {
+					editor.execute(option, params[option] || null);
+					this._resetRange(model, writer);
+				}
+			});
+		});
+	}
 
-		if (clearEmpty) {
-			editor.execute('selectAll');
-			editor.execute('clearEmpty');
-		}
-
-		if (clearSpace) {
-			editor.execute('selectAll');
-			editor.execute('clearSpace');
-		}
-
-		if (indentFirst) {
-			editor.execute('selectAll');
-			editor.execute('indentFirst');
-		}
-
-		if (convertHalfFull) {
-			editor.execute('selectAll');
-			editor.execute('convertFullHalf', { type: 'half' });
-		}
-
-		editor.execute('selectAll');
+	_resetRange(model, writer) {
+		const range = model.createRangeIn(model.document.getRoot());
+		writer.setSelection(range);
 	}
 }

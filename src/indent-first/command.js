@@ -37,7 +37,7 @@ export default class IndentFirstCommand extends Command {
 		model.change((writer) => {
 			let isRemove;
 			for (const block of selection) {
-				if (this._executable(schema, block)) {
+				if (!this._executable(schema, block)) {
 					continue;
 				}
 				if (typeof isRemove !== 'boolean') {

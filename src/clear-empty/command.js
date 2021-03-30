@@ -38,26 +38,26 @@ export default class ClearEmptyCommand extends Command {
 		// }
 	}
 
-	/**
-	 * is it a picture, video or table
-	 *
-	 * @param block
-	 * @returns {boolean}
-	 */
-	_inExcludes(block) {
-		return ['image', 'media', 'table'].some((e) => block.is('element', e));
-	}
-
-	/**
-	 * block's content is empty
-	 *
-	 * @param block
-	 * @returns {boolean}
-	 */
-	_isEmpty(block) {
-		const text = Array.from(block.getChildren())
-			.map((c) => c.data)
-			.join('');
-		return /^\s*$/.test(text);
-	}
+	// /**
+	//  * is it a picture, video or table
+	//  *
+	//  * @param block
+	//  * @returns {boolean}
+	//  */
+	// _inExcludes(block) {
+	// 	return ['image', 'media', 'table'].some((e) => block.is('element', e));
+	// }
+	//
+	// /**
+	//  * block's content is empty
+	//  *
+	//  * @param block
+	//  * @returns {boolean}
+	//  */
+	// _isEmpty(block) {
+	// 	const text = Array.from(block.getChildren())
+	// 		.map((c) => c.data)
+	// 		.join('');
+	// 	return /^\s*$/.test(text);
+	// }
 }
