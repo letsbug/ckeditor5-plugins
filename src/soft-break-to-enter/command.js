@@ -19,8 +19,40 @@ export default class SoftBreakToEnterCommand extends Command {
 		const model = this.editor.model;
 
 		model.change((writer) => {
-			for (const v of model.document.selection.getSelectedBlocks()) {
-				this._softBreakToEnter(writer, v);
+			for (const block of model.document.selection.getSelectedBlocks()) {
+				const childes = Array.from(block.getChildren());
+				if (childes.length < 2) {
+					continue;
+				}
+
+				const replaces = [];
+				let replace = this._reset(writer, block);
+
+				childes.forEach((child, i) => {
+					const attrs = Object.fromEntries(child.getAttributes());
+
+					if (child.is('$text')) {
+						writer.appendText(child.data, attrs, replace);
+					} else if (child.name !== 'softBreak') {
+						writer.appendElement(child.name, attrs, replace);
+					}
+
+					if (child.name === 'softBreak' || i === childes.length - 1) {
+						replaces.push(replace);
+
+						if (i < childes.length - 1) {
+							replace = this._reset(writer, block);
+						}
+					}
+				});
+
+				replaces.forEach((r, i) => {
+					if (i === 0) {
+						model.insertContent(r, writer.createRangeOn(block));
+					} else {
+						model.insertContent(r, writer.createPositionAfter(replaces[i - 1]));
+					}
+				});
 			}
 		});
 	}
@@ -39,51 +71,5 @@ export default class SoftBreakToEnterCommand extends Command {
 	 */
 	_reset(writer, block) {
 		return writer.createElement(block.name, Object.fromEntries(block.getAttributes()));
-	}
-
-	/**
-	 * execute 'soft break to enter' command
-	 * @param writer
-	 * @param block
-	 */
-	_softBreakToEnter(writer, block) {
-		const childes = Array.from(block.getChildren());
-		if (!childes.length) {
-			return;
-		}
-
-		const breaks = childes.filter((child) => child.name === 'softBreak');
-		if (!breaks.length) {
-			return;
-		}
-
-		if (breaks.length === 1) {
-			writer.remove(breaks[0]);
-			return;
-		}
-
-		let replace = this._reset(writer, block);
-		let lastInsert = null;
-
-		childes.forEach((child, i) => {
-			const attrs = Object.fromEntries(child.getAttributes());
-
-			if (child.is('$text')) {
-				writer.appendText(child.data, attrs, replace);
-			} else if (child.name !== 'softBreak') {
-				writer.appendElement(child.name, attrs, replace);
-			}
-
-			if (child.name === 'softBreak' || i === childes.length - 1) {
-				writer.insert(replace, writer.createPositionAfter(lastInsert || block));
-
-				if (i < childes.length - 1 && child.name === 'softBreak') {
-					lastInsert = replace;
-					replace = this._reset(writer, block);
-				}
-			}
-		});
-
-		writer.remove(block);
 	}
 }
