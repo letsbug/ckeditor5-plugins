@@ -24,35 +24,22 @@ export default class QuickStyleCommand extends Command {
 	 */
 	execute(options = {}) {
 		const editor = this.editor;
-		const model = editor.model;
 
-		const params = {
-			convertFullHalf: { type: 'half' },
-		};
+		const params = { convertFullHalf: { type: 'half' } };
+		const sorted = ['removeFormat', 'convertFullHalf', 'softBreakToEnter', 'clearEmpty', 'clearSpace', 'indentFirst'];
+		const needReset = ['removeFormat', 'convertFullHalf', 'clearSpace', 'indentFirst'];
 
-		model.change((writer) => {
-			this._resetRange(model, writer);
-
-			const sorted = [
-				'removeFormat',
-				'convertFullHalf',
-				'softBreakToEnter',
-				'clearEmpty',
-				'clearSpace',
-				'indentFirst',
-			].filter((op) => Object.keys(options).includes(op));
-
-			sorted.forEach((option) => {
-				if (options[option]) {
-					editor.execute(option, params[option] || null);
-					this._resetRange(model, writer);
+		sorted
+			.filter((op) => Object.keys(options).includes(op))
+			.forEach((option) => {
+				if (!options[option]) {
+					return;
 				}
-			});
-		});
-	}
 
-	_resetRange(model, writer) {
-		const range = model.createRangeIn(model.document.getRoot());
-		writer.setSelection(range);
+				if (needReset.includes(option)) {
+					editor.execute('selectAll');
+				}
+				editor.execute(option, params[option] || null);
+			});
 	}
 }
