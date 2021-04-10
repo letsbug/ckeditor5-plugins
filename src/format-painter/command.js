@@ -111,10 +111,17 @@ export default class FormatPainterCommand extends Command {
 		const range = model.createRange(start, end);
 
 		model.change((writer) => {
-			if (!Object.keys(attrs).length) {
-				writer.clearAttributes(range);
+			for (const walker of range.getWalker()) {
+				const textNode = walker.item.textNode;
+				if (!textNode) {
+					continue;
+				}
+
+				if (!Object.keys(attrs).length) {
+					writer.clearAttributes(textNode);
+				}
+				writer.setAttributes(this.waiting, textNode);
 			}
-			writer.setAttributes(this.waiting, range);
 		});
 
 		this.waiting = null;

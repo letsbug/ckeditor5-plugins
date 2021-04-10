@@ -77,7 +77,7 @@ export default class ConvertFullHalfCommand extends Command {
 						dictionary[{ full: 'half', half: 'full' }[type]].charAt(position)
 					);
 				}
-				model.insertContent(writer.createText(replace), range);
+				model.insertContent(writer.createText(replace, Object.fromEntries(textNode.getAttributes())), range);
 			}
 
 			writer.setSelection(this.range);
