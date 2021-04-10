@@ -107,23 +107,26 @@ export default class FormatPainterCommand extends Command {
 			return;
 		}
 
-		const attrs = this.waiting;
-		const range = model.createRange(start, end);
+		const selectionRange = model.createRange(start, end);
 
 		model.change((writer) => {
-			for (const walker of range.getWalker()) {
+			const walkers = selectionRange.getWalker();
+			for (const walker of walkers) {
 				const textNode = walker.item.textNode;
-				if (!textNode) {
-					continue;
+				if (textNode) {
+					const range = writer.createRange(walker.previousPosition, walker.nextPosition);
+					this._setAttributes(writer, range);
 				}
-
-				if (!Object.keys(attrs).length) {
-					writer.clearAttributes(textNode);
-				}
-				writer.setAttributes(this.waiting, textNode);
 			}
 		});
 
 		this.waiting = null;
+	}
+
+	_setAttributes(writer, itemOrRange) {
+		if (!Object.keys(this.waiting).length) {
+			writer.clearAttributes(itemOrRange);
+		}
+		writer.setAttributes(this.waiting, itemOrRange);
 	}
 }
