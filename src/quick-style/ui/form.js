@@ -19,6 +19,7 @@ export const fields = [
 	{ label: '半角转全角', name: 'convertFullHalf' },
 	// { label: '清除超链接', name: 'clearLinks' },
 	{ label: '首行缩进', name: 'indentFirst' },
+	{ label: '清除超链接', name: 'clearLinks' },
 	{ label: '清除空行', name: 'clearEmpty' },
 	{ label: '清除多余空格', name: 'clearSpace' },
 	{ label: '换行转断行', name: 'softBreakToEnter' },

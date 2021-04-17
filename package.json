@@ -1,6 +1,6 @@
 {
   "name": "@hlx/ckeditor5-plugins",
-  "version": "27.0.2",
+  "version": "27.0.3",
   "description": "custom ckeditor5 plugins (eg: indent first line, custom format, ad so on...)",
   "scripts": {
     "lint": "eslint --quiet '**/*.js' --fix",

@@ -26,8 +26,16 @@ export default class QuickStyleCommand extends Command {
 		const editor = this.editor;
 
 		const params = { convertFullHalf: { type: 'half' } };
-		const sorted = ['removeFormat', 'convertFullHalf', 'softBreakToEnter', 'clearEmpty', 'clearSpace', 'indentFirst'];
-		const needReset = ['removeFormat', 'convertFullHalf', 'clearSpace', 'indentFirst'];
+		const sorted = [
+			'removeFormat',
+			'clearLinks',
+			'convertFullHalf',
+			'softBreakToEnter',
+			'clearEmpty',
+			'clearSpace',
+			'indentFirst',
+		];
+		const needReset = ['removeFormat', 'clearLinks', 'convertFullHalf', 'clearSpace', 'indentFirst'];
 
 		sorted
 			.filter((op) => Object.keys(options).includes(op))
@@ -39,7 +47,22 @@ export default class QuickStyleCommand extends Command {
 				if (needReset.includes(option)) {
 					editor.execute('selectAll');
 				}
+				if (option === 'clearLinks') {
+					return this.clearLinks();
+				}
 				editor.execute(option, params[option] || null);
 			});
+	}
+
+	clearLinks() {
+		const model = this.editor.model;
+		const range = model.createRangeIn(model.document.getRoot());
+
+		model.change((writer) => {
+			for (const walker of range.getWalker()) {
+				const textNode = walker.item.textNode;
+				if (!textNode) writer.removeAttribute('linkHref', textNode);
+			}
+		});
 	}
 }
