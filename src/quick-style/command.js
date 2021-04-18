@@ -61,7 +61,7 @@ export default class QuickStyleCommand extends Command {
 		model.change((writer) => {
 			for (const walker of range.getWalker()) {
 				const textNode = walker.item.textNode;
-				if (!textNode) writer.removeAttribute('linkHref', textNode);
+				if (textNode) writer.removeAttribute('linkHref', textNode);
 			}
 		});
 	}
