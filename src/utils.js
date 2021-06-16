@@ -19,3 +19,30 @@ export function findFirst(iterator, success) {
 
 	return findFirst(iterator, success);
 }
+
+/**
+ * Find the position (interval) of a text/word in a string
+ *
+ * @param {string} word target word
+ * @param {string} text target string text
+ * @param {boolean} caseSensitive
+ */
+export function findIndicesOf(word, text, caseSensitive) {
+	const searchStrLen = word.length;
+	if (searchStrLen === 0) {
+		return [];
+	}
+
+	let startIndex = 0;
+	let index;
+	const indices = [];
+	if (!caseSensitive) {
+		text = text.toLowerCase();
+		word = word.toLowerCase();
+	}
+	while ((index = text.indexOf(word, startIndex)) > -1) {
+		indices.push(index);
+		startIndex = index + searchStrLen;
+	}
+	return indices;
+}

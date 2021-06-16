@@ -5,6 +5,7 @@
 import { Command } from '@ckeditor/ckeditor5-core';
 import { CURRENT_MARKER, SEARCH_MARKER } from './index';
 import { scrollViewportToShowTarget } from '@ckeditor/ckeditor5-utils/src/dom/scroll';
+import { findIndicesOf } from '../utils';
 
 export default class FindReplaceCommand extends Command {
 	/**
@@ -93,7 +94,7 @@ export default class FindReplaceCommand extends Command {
 
 					const text = value.item.data;
 					for (const val of values) {
-						const indices = this._getIndicesOf(val, text, false);
+						const indices = findIndicesOf(val, text, false);
 						for (const index of indices) {
 							const label = SEARCH_MARKER + ':' + val + ':' + counter++;
 							const startIndex = textNode.startOffset + index;
@@ -113,25 +114,6 @@ export default class FindReplaceCommand extends Command {
 		const currentMarker = markers[this.currentSearchIndex];
 		this._scrollTo(currentMarker);
 		return currentMarker;
-	}
-
-	_getIndicesOf(searchStr, str, caseSensitive) {
-		const searchStrLen = searchStr.length;
-		if (searchStrLen === 0) {
-			return [];
-		}
-		let startIndex = 0;
-		let index;
-		const indices = [];
-		if (!caseSensitive) {
-			str = str.toLowerCase();
-			searchStr = searchStr.toLowerCase();
-		}
-		while ((index = str.indexOf(searchStr, startIndex)) > -1) {
-			indices.push(index);
-			startIndex = index + searchStrLen;
-		}
-		return indices;
 	}
 
 	_resetStatus(findField, replaceField) {
