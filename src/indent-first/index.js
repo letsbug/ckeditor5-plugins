@@ -1,7 +1,7 @@
 /**
  * @module indent-first/index
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 
 import IndentFirstEditing from './editing';
 import IndentFirstUi from './ui';

@@ -3,11 +3,11 @@
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
 
-export default class HighlightVectoringUI extends Plugin {
+export default class HighlightOrientedUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
 	static get pluginName() {
-		return 'HighlightVectoringUI';
+		return 'HighlightOrientedUI';
 	}
 }

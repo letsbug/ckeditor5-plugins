@@ -1,7 +1,7 @@
 /**
  * @module paragraph-spacing/editing
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import ParagraphSpacingCommand from './command';
 import { buildDefinition, isSupported } from '../utils';
 import { ATTRIBUTE } from './index';

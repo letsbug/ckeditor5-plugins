@@ -1,16 +1,18 @@
 /**
  * @module find-replace/ui
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import { addToolbarToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
-import LabeledFieldView from '@ckeditor/ckeditor5-ui/src/labeledfield/labeledfieldview';
-import { createLabeledInputText } from '@ckeditor/ckeditor5-ui/src/labeledfield/utils';
+import { Plugin } from '@ckeditor/ckeditor5-core';
+import { KeystrokeHandler, FocusTracker } from '@ckeditor/ckeditor5-utils';
+import {
+	ButtonView,
+	LabeledFieldView,
+	ViewCollection,
+	FocusCycler,
+	createDropdown,
+	addToolbarToDropdown,
+	createLabeledInputText,
+} from '@ckeditor/ckeditor5-ui';
 import { ATTRIBUTE, CURRENT_MARKER, SEARCH_MARKER } from './index';
-import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import KeystrokeHandler from '@ckeditor/ckeditor5-utils/src/keystrokehandler';
-import FocusTracker from '@ckeditor/ckeditor5-utils/src/focustracker';
-import ViewCollection from '@ckeditor/ckeditor5-ui/src/viewcollection';
-import FocusCycler from '@ckeditor/ckeditor5-ui/src/focuscycler';
 import searchIcon from '../../theme/icons/find-replace.svg';
 
 export default class FindReplaceUI extends Plugin {

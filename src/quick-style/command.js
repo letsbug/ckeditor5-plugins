@@ -1,7 +1,7 @@
 /**
  * @module quick-style/command
  */
-import Command from '@ckeditor/ckeditor5-core/src/command';
+import { Command } from '@ckeditor/ckeditor5-core';
 
 export default class QuickStyleCommand extends Command {
 	// /**

@@ -1,7 +1,7 @@
 /**
  * @module indent-first/command
  */
-import Command from '@ckeditor/ckeditor5-core/src/command';
+import { Command } from '@ckeditor/ckeditor5-core';
 import { ATTRIBUTE } from './index';
 import { findFirst } from '../utils';
 

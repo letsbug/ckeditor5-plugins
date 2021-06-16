@@ -1,10 +1,9 @@
 /**
  * @module paragraph-spacing/ui
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import Model from '@ckeditor/ckeditor5-ui/src/model';
-import Collection from '@ckeditor/ckeditor5-utils/src/collection';
-import { addListToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
+import { Plugin } from '@ckeditor/ckeditor5-core';
+import { Model, addListToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui';
+import { Collection } from '@ckeditor/ckeditor5-utils';
 import { isSupported, normalizeOptions } from '../utils';
 import { ATTRIBUTE } from './index';
 import paragraphSpacingIcon from '../../../theme/icons/paragraph-spacing.svg';

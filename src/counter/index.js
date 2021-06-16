@@ -7,11 +7,10 @@
  * @module counter/index
  */
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import { modelElementToPlainText } from './utils';
 import { isElement, throttle } from 'lodash-es';
-import View from '@ckeditor/ckeditor5-ui/src/view';
-import Template from '@ckeditor/ckeditor5-ui/src/template';
+import { View, Template } from '@ckeditor/ckeditor5-ui';
 
 /**
  * The word count plugin.

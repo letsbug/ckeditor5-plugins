@@ -1,7 +1,7 @@
 /**
  * @module line-height/index
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import LineHeightEditing from './editing';
 import LineHeightUI from './ui';
 

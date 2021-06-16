@@ -1,7 +1,7 @@
 /**
  * @module find-replace/index
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import FindReplaceUI from './ui';
 import FindReplaceEditing from './editing';
 import '../../theme/find-replace.css';

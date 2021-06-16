@@ -2,7 +2,7 @@
  * @module convert-full-half/index
  */
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import ConvertFullHalfUI from './ui';
 import ConvertFullHalfEditing from './editing';
 

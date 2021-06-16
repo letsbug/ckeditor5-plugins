@@ -1,12 +1,5 @@
-import View from '@ckeditor/ckeditor5-ui/src/view';
-import FocusTracker from '@ckeditor/ckeditor5-utils/src/focustracker';
-import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import SwitchButtonView from '@ckeditor/ckeditor5-ui/src/button/switchbuttonview';
-import submitHandler from '@ckeditor/ckeditor5-ui/src/bindings/submithandler';
-
-import KeystrokeHandler from '@ckeditor/ckeditor5-utils/src/keystrokehandler';
-import ViewCollection from '@ckeditor/ckeditor5-ui/src/viewcollection';
-import FocusCycler from '@ckeditor/ckeditor5-ui/src/focuscycler';
+import { View, ButtonView, SwitchButtonView, ViewCollection, FocusCycler, submitHandler } from '@ckeditor/ckeditor5-ui';
+import { KeystrokeHandler, FocusTracker } from '@ckeditor/ckeditor5-utils';
 
 import checkIcon from '@ckeditor/ckeditor5-core/theme/icons/check.svg';
 import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';

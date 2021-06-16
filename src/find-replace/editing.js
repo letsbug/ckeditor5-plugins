@@ -1,7 +1,7 @@
 /**
  * @module find-replace/editing
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import { ATTRIBUTE } from './index';
 import FindReplaceCommand from './command';
 

@@ -1,7 +1,7 @@
 /**
  * @module clear-space/command
  */
-import Command from '@ckeditor/ckeditor5-core/src/command';
+import { Command } from '@ckeditor/ckeditor5-core';
 import { findFirst } from '../utils';
 
 // All white space characters except '\n'

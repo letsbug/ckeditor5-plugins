@@ -2,7 +2,7 @@
  * @module find-replace/command
  */
 
-import Command from '@ckeditor/ckeditor5-core/src/command';
+import { Command } from '@ckeditor/ckeditor5-core';
 import { CURRENT_MARKER, SEARCH_MARKER } from './index';
 import { scrollViewportToShowTarget } from '@ckeditor/ckeditor5-utils/src/dom/scroll';
 

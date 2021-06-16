@@ -2,9 +2,9 @@
  * @module convert-full-half/ui
  */
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import { ATTRIBUTE } from './index';
-import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
+import { ButtonView } from '@ckeditor/ckeditor5-ui';
 import HalfIcon from '../../theme/icons/full-to-half.svg';
 import FullIcon from '../../theme/icons/half-to-full.svg';
 

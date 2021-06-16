@@ -1,7 +1,7 @@
 /**
  * @module clear-empty/command
  */
-import Command from '@ckeditor/ckeditor5-core/src/command';
+import { Command } from '@ckeditor/ckeditor5-core';
 
 export default class ClearEmptyCommand extends Command {
 	/**

@@ -2,7 +2,7 @@
  * @module indent-first/editing
  */
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import IndentFirstCommand from './command';
 import { ATTRIBUTE } from './index';
 

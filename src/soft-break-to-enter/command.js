@@ -1,7 +1,7 @@
 /**
  * @module soft-break-to-enter/command
  */
-import Command from '@ckeditor/ckeditor5-core/src/command';
+import { Command } from '@ckeditor/ckeditor5-core';
 
 export default class SoftBreakToEnterCommand extends Command {
 	/**

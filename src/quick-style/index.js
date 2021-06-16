@@ -1,7 +1,7 @@
 /**
  * @module quick-style/index
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import QuickStyleUI from './ui';
 import QuickStyleEditing from './editing';
 

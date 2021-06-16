@@ -2,7 +2,7 @@
  * @module convert-full-half/command
  */
 
-import Command from '@ckeditor/ckeditor5-core/src/command';
+import { Command } from '@ckeditor/ckeditor5-core';
 
 const dictionary = {
 	full: '《》（）【】。？！；，：“”‘’',

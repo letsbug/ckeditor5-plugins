@@ -1,7 +1,7 @@
 /**
  * @module quick-style/editing
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import QuickStyleCommand from './command';
 import { ATTRIBUTE } from './index';
 

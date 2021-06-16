@@ -4,9 +4,9 @@
  * @module simple-adapter/index
  */
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import FileRepository from '@ckeditor/ckeditor5-upload/src/filerepository';
-import { logWarning } from '@ckeditor/ckeditor5-utils/src/ckeditorerror';
+import { Plugin } from '@ckeditor/ckeditor5-core';
+import { FileRepository } from '@ckeditor/ckeditor5-upload';
+import { logWarning } from '@ckeditor/ckeditor5-utils';
 
 export default class SimpleAdapter extends Plugin {
 	/**

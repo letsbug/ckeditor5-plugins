@@ -1,7 +1,7 @@
 /**
  * @module clear-empty/editing
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import ClearEmptyCommand from './command';
 import { ATTRIBUTE } from './index';
 

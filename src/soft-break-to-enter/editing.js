@@ -1,7 +1,7 @@
 /**
  * @module soft-break-to-enter/editing
  */
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from '@ckeditor/ckeditor5-core';
 import SoftBreakToEnterCommand from './command';
 import { ATTRIBUTE } from './index';
 
