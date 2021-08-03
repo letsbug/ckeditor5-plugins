@@ -2,12 +2,12 @@
  * @module clear-space/index
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import ClearSpaceUI from './ui';
-import ClearSpaceEditing from './editing';
+import { ClearSpaceUI } from './ui';
+import { ClearSpaceEditing } from './editing';
 
-export const ATTRIBUTE = 'clearSpace';
+const ATTRIBUTE = 'clearSpace';
 
-export default class ClearSpace extends Plugin {
+class ClearSpace extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -22,3 +22,5 @@ export default class ClearSpace extends Plugin {
 		return 'ClearSpace';
 	}
 }
+
+export { ATTRIBUTE, ClearSpaceUI, ClearSpaceEditing, ClearSpace };

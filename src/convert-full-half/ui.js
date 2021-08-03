@@ -20,7 +20,7 @@ const labels = new Map([
 	['half', '半角转全角'],
 ]);
 
-export default class ConvertFullHalfUI extends Plugin {
+export class ConvertFullHalfUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

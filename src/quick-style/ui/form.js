@@ -38,7 +38,7 @@ function checkFields(obj) {
  *
  * @extends {View}
  */
-export default class QuickStyleForm extends View {
+export class QuickStyleForm extends View {
 	constructor(local) {
 		super(local);
 

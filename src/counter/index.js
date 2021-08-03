@@ -42,7 +42,7 @@ import { View, Template } from '@ckeditor/ckeditor5-ui';
  *
  * @extends module:core/plugin~Plugin
  */
-export default class Counter extends Plugin {
+class Counter extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -280,6 +280,8 @@ export default class Counter extends Plugin {
 		});
 	}
 }
+
+export { modelElementToPlainText, Counter };
 
 /**
  * An event fired after {@link #words} and {@link #characters} are updated.

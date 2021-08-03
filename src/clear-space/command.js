@@ -7,7 +7,7 @@ import { findFirst } from '../utils';
 // All white space characters except '\n'
 const empties = ' \\f\\r\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff';
 
-export default class ClearSpaceCommand extends Command {
+export class ClearSpaceCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */

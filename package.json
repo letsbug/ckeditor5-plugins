@@ -1,6 +1,6 @@
 {
   "name": "@hlx/ckeditor5-plugins",
-  "version": "29.0.0",
+  "version": "29.0.1",
   "description": "custom ckeditor5 plugins (eg: indent first line, custom format, ad so on...)",
   "scripts": {
     "lint": "eslint --quiet '**/*.js' --fix",
@@ -28,7 +28,7 @@
     "registry": "http://10.3.196.23:8081/repository/npm-hosted/"
   },
   "homepage": "https://github.com/letsbug/ckeditor5-plugins#readme",
-  "dependencies": {
+  "peerDependencies": {
     "@ckeditor/ckeditor5-core": "^29.0.0",
     "@ckeditor/ckeditor5-engine": "^29.0.0",
     "@ckeditor/ckeditor5-highlight": "^29.0.0",
@@ -44,7 +44,6 @@
     "husky": "^7.0.1",
     "lint-staged": "^11.0.1",
     "lodash-es": "^4.17.21",
-    "prettier": "^2.3.2",
     "svgo": "^2.3.1"
   },
   "engines": {

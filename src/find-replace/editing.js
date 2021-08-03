@@ -3,9 +3,9 @@
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { ATTRIBUTE } from './index';
-import FindReplaceCommand from './command';
+import { FindReplaceCommand } from './command';
 
-export default class FindReplaceEditing extends Plugin {
+export class FindReplaceEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

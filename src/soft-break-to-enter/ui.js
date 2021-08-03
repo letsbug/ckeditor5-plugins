@@ -6,7 +6,7 @@ import { ATTRIBUTE } from './index';
 import { ButtonView } from '@ckeditor/ckeditor5-ui';
 import buttonIcon from '../../theme/icons/soft-break-to-enter.svg';
 
-export default class SoftBreakToEnterUI extends Plugin {
+export class SoftBreakToEnterUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

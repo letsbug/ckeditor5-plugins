@@ -2,10 +2,10 @@
  * @module quick-style/editing
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import QuickStyleCommand from './command';
+import { QuickStyleCommand } from './command';
 import { ATTRIBUTE } from './index';
 
-export default class QuickStyleEditing extends Plugin {
+export class QuickStyleEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

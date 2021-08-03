@@ -10,7 +10,7 @@ import { findFirst } from '../utils';
  *
  * @extends module:core/command~Command
  */
-export default class IndentFirstCommand extends Command {
+export class IndentFirstCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */

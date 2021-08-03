@@ -7,7 +7,7 @@ import { CURRENT_MARKER, SEARCH_MARKER } from './index';
 import { scrollViewportToShowTarget } from '@ckeditor/ckeditor5-utils/src/dom/scroll';
 import { findIndicesOf } from '../utils';
 
-export default class FindReplaceCommand extends Command {
+export class FindReplaceCommand extends Command {
 	/**
 	 * @inheritDoc
 	 * @param {Object} options

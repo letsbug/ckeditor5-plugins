@@ -6,7 +6,7 @@ import { ButtonView } from '@ckeditor/ckeditor5-ui';
 import { ATTRIBUTE } from './index';
 import clearEmptyIcon from '../../theme/icons/clear-empty.svg';
 
-export default class ClearEmptyUI extends Plugin {
+export class ClearEmptyUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

@@ -4,7 +4,7 @@
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { ButtonView } from '@ckeditor/ckeditor5-ui';
 
-export default class ExtensionsUI extends Plugin {
+export class ExtensionsUI extends Plugin {
 	static get pluginName() {
 		return 'ExtensionsUI';
 	}

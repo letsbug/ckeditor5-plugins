@@ -2,13 +2,13 @@
  * @module quick-style/index
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import QuickStyleUI from './ui';
-import QuickStyleEditing from './editing';
+import { QuickStyleUI } from './ui';
+import { QuickStyleEditing } from './editing';
 
-export const ATTRIBUTE = 'quickStyle';
-export const STORAGE_KEY = 'ck-quick-style-pref';
+const ATTRIBUTE = 'quickStyle';
+const STORAGE_KEY = 'ck-quick-style-pref';
 
-export default class QuickStyle extends Plugin {
+class QuickStyle extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -23,3 +23,5 @@ export default class QuickStyle extends Plugin {
 		return 'QuickStyle';
 	}
 }
+
+export { ATTRIBUTE, STORAGE_KEY, QuickStyleUI, QuickStyleEditing, QuickStyle };

@@ -5,7 +5,7 @@ import { Command } from '@ckeditor/ckeditor5-core';
 import { ATTRIBUTE } from './index';
 import { findFirst } from '../../utils';
 
-export default class ParagraphSpacingCommand extends Command {
+export class ParagraphSpacingCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */

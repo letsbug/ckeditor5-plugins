@@ -8,7 +8,7 @@ import { Plugin } from '@ckeditor/ckeditor5-core';
 import { FileRepository } from '@ckeditor/ckeditor5-upload';
 import { logWarning } from '@ckeditor/ckeditor5-utils';
 
-export default class SimpleAdapter extends Plugin {
+class SimpleAdapter extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -174,3 +174,5 @@ class Adapter {
 		this.xhr.send(data);
 	}
 }
+
+export { SimpleAdapter };

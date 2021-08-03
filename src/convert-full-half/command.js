@@ -10,7 +10,7 @@ const dictionary = {
 	halfEscaped: `\\<\\>\\(\\)\\[\\]\\.\\?\\!;,:""''`,
 };
 
-export default class ConvertFullHalfCommand extends Command {
+export class ConvertFullHalfCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */

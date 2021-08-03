@@ -8,7 +8,7 @@ import { isSupported, normalizeOptions } from '../utils';
 import { ATTRIBUTE } from './index';
 import paragraphSpacingIcon from '../../../theme/icons/paragraph-spacing.svg';
 
-export default class ParagraphSpacingUI extends Plugin {
+export class ParagraphSpacingUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

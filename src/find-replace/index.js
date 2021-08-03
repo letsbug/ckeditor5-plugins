@@ -2,15 +2,15 @@
  * @module find-replace/index
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import FindReplaceUI from './ui';
-import FindReplaceEditing from './editing';
+import { FindReplaceUI } from './ui';
+import { FindReplaceEditing } from './editing';
 import '../../theme/find-replace.css';
 
-export const ATTRIBUTE = 'findReplace';
-export const SEARCH_MARKER = 'SEARCH';
-export const CURRENT_MARKER = 'CURRENT';
+const ATTRIBUTE = 'findReplace';
+const SEARCH_MARKER = 'SEARCH';
+const CURRENT_MARKER = 'CURRENT';
 
-export default class FindReplace extends Plugin {
+class FindReplace extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -25,3 +25,5 @@ export default class FindReplace extends Plugin {
 		return 'FindReplace';
 	}
 }
+
+export { ATTRIBUTE, SEARCH_MARKER, CURRENT_MARKER, FindReplaceUI, FindReplaceEditing, FindReplace };

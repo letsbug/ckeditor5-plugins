@@ -1,10 +1,10 @@
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import FormatPainterUI from './ui';
-import FormatPainterEditing from './editing';
+import { FormatPainterUI } from './ui';
+import { FormatPainterEditing } from './editing';
 
-export const ATTRIBUTE = 'formatPainter';
+const ATTRIBUTE = 'formatPainter';
 
-export default class FormatPainter extends Plugin {
+class FormatPainter extends Plugin {
 	/**
 	 * @inheritDoc
 	 * @return {string}
@@ -21,3 +21,5 @@ export default class FormatPainter extends Plugin {
 		return [FormatPainterUI, FormatPainterEditing];
 	}
 }
+
+export { ATTRIBUTE, FormatPainterUI, FormatPainterEditing, FormatPainter };

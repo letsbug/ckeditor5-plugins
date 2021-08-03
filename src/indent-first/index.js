@@ -3,12 +3,12 @@
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
 
-import IndentFirstEditing from './editing';
-import IndentFirstUi from './ui';
+import { IndentFirstEditing } from './editing';
+import { IndentFirstUi } from './ui';
 
-export const ATTRIBUTE = 'indentFirst';
+const ATTRIBUTE = 'indentFirst';
 
-export default class IndentFirst extends Plugin {
+class IndentFirst extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -23,3 +23,5 @@ export default class IndentFirst extends Plugin {
 		return 'IndentFirst';
 	}
 }
+
+export { ATTRIBUTE, IndentFirstUi, IndentFirstEditing, IndentFirst };

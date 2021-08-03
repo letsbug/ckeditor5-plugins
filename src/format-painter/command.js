@@ -1,6 +1,6 @@
 import { Command } from '@ckeditor/ckeditor5-core';
 
-export default class FormatPainterCommand extends Command {
+export class FormatPainterCommand extends Command {
 	/**
 	 * @inheritDoc
 	 * @param editor

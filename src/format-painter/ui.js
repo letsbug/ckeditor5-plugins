@@ -3,7 +3,7 @@ import { ButtonView } from '@ckeditor/ckeditor5-ui';
 import { ATTRIBUTE } from './index';
 import BrushIcon from '../../theme/icons/brush.svg';
 
-export default class FormatPainterUI extends Plugin {
+export class FormatPainterUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 * @return {string}

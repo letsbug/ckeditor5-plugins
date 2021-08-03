@@ -15,7 +15,7 @@ import {
 import { ATTRIBUTE, CURRENT_MARKER, SEARCH_MARKER } from './index';
 import searchIcon from '../../theme/icons/find-replace.svg';
 
-export default class FindReplaceUI extends Plugin {
+export class FindReplaceUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

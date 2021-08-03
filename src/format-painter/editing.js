@@ -1,8 +1,8 @@
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { ATTRIBUTE } from './index';
-import FormatPainterCommand from './command';
+import { FormatPainterCommand } from './command';
 
-export default class FormatPainterEditing extends Plugin {
+export class FormatPainterEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 * @return {string}

@@ -4,9 +4,9 @@
 
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { ATTRIBUTE } from './index';
-import ConvertFullHalfCommand from './command';
+import { ConvertFullHalfCommand } from './command';
 
-export default class ConvertFullHalfEditing extends Plugin {
+export class ConvertFullHalfEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

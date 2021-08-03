@@ -8,7 +8,7 @@ import { isSupported, normalizeOptions } from '../utils';
 import { ATTRIBUTE } from './index';
 import LineHeightIcon from '../../../theme/icons/line-height.svg';
 
-export default class LineHeightUI extends Plugin {
+export class LineHeightUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

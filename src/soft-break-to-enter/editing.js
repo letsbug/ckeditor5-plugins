@@ -2,10 +2,10 @@
  * @module soft-break-to-enter/editing
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import SoftBreakToEnterCommand from './command';
+import { SoftBreakToEnterCommand } from './command';
 import { ATTRIBUTE } from './index';
 
-export default class SoftBreakToEnterEditing extends Plugin {
+export class SoftBreakToEnterEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

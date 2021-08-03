@@ -2,9 +2,9 @@
  * @module extensions/extensions
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import ExtensionsUI from './ui';
+import { ExtensionsUI } from './ui';
 
-export default class Extensions extends Plugin {
+class Extensions extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -19,3 +19,5 @@ export default class Extensions extends Plugin {
 		return 'Extensions';
 	}
 }
+
+export { ExtensionsUI, Extensions };

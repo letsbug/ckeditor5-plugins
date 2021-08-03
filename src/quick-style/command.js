@@ -3,7 +3,7 @@
  */
 import { Command } from '@ckeditor/ckeditor5-core';
 
-export default class QuickStyleCommand extends Command {
+export class QuickStyleCommand extends Command {
 	// /**
 	//  * @inheritDoc
 	//  */

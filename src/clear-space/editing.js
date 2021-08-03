@@ -2,10 +2,10 @@
  * @module clear-space/editing
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import ClearSpaceCommand from './command';
+import { ClearSpaceCommand } from './command';
 import { ATTRIBUTE } from './index';
 
-export default class ClearSpaceEditing extends Plugin {
+export class ClearSpaceEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

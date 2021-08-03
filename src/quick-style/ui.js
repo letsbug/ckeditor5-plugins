@@ -4,10 +4,10 @@
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { createDropdown, SplitButtonView } from '@ckeditor/ckeditor5-ui';
 import { ATTRIBUTE, STORAGE_KEY } from './index';
-import QuickStyleForm from './ui/form';
+import { QuickStyleForm } from './ui/form';
 import Icon from '../../theme/icons/magic-wand.svg';
 
-export default class QuickStyleUI extends Plugin {
+export class QuickStyleUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

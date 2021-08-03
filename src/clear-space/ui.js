@@ -6,7 +6,7 @@ import { ButtonView } from '@ckeditor/ckeditor5-ui';
 import { ATTRIBUTE } from './index';
 import trimIcon from '../../theme/icons/trim.svg';
 
-export default class ClearSpaceUI extends Plugin {
+export class ClearSpaceUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

@@ -3,7 +3,7 @@
  */
 import { Command } from '@ckeditor/ckeditor5-core';
 
-export default class SoftBreakToEnterCommand extends Command {
+export class SoftBreakToEnterCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */

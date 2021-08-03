@@ -3,10 +3,10 @@
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
 import { isSupported, buildDefinition } from '../utils';
-import LineHeightCommand from './command';
+import { LineHeightCommand } from './command';
 import { ATTRIBUTE } from './index';
 
-export default class LineHeightEditing extends Plugin {
+export class LineHeightEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

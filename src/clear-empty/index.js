@@ -2,12 +2,12 @@
  * @module clear-empty/index
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import ClearEmptyUI from './ui';
-import ClearEmptyEditing from './editing';
+import { ClearEmptyUI } from './ui';
+import { ClearEmptyEditing } from './editing';
 
-export const ATTRIBUTE = 'clearEmpty';
+const ATTRIBUTE = 'clearEmpty';
 
-export default class ClearEmpty extends Plugin {
+class ClearEmpty extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -22,3 +22,5 @@ export default class ClearEmpty extends Plugin {
 		return 'ClearEmpty';
 	}
 }
+
+export { ATTRIBUTE, ClearEmptyUI, ClearEmptyEditing, ClearEmpty };

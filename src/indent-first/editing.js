@@ -3,10 +3,10 @@
  */
 
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import IndentFirstCommand from './command';
+import { IndentFirstCommand } from './command';
 import { ATTRIBUTE } from './index';
 
-export default class IndentFirstEditing extends Plugin {
+export class IndentFirstEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

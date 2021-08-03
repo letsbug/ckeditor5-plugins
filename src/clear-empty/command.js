@@ -3,7 +3,7 @@
  */
 import { Command } from '@ckeditor/ckeditor5-core';
 
-export default class ClearEmptyCommand extends Command {
+export class ClearEmptyCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */

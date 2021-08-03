@@ -5,7 +5,7 @@ import { Command } from '@ckeditor/ckeditor5-core';
 import { ATTRIBUTE } from './index';
 import { findFirst } from '../../utils';
 
-export default class LineHeightCommand extends Command {
+export class LineHeightCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */

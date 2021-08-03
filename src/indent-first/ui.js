@@ -7,7 +7,7 @@ import { ButtonView } from '@ckeditor/ckeditor5-ui';
 import { ATTRIBUTE } from './index';
 import indentFirst from '../../theme/icons/indent-first.svg';
 
-export default class IndentFirstUi extends Plugin {
+export class IndentFirstUi extends Plugin {
 	/**
 	 * @inheritDoc
 	 */

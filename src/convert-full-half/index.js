@@ -3,12 +3,12 @@
  */
 
 import { Plugin } from '@ckeditor/ckeditor5-core';
-import ConvertFullHalfUI from './ui';
-import ConvertFullHalfEditing from './editing';
+import { ConvertFullHalfUI } from './ui';
+import { ConvertFullHalfEditing } from './editing';
 
-export const ATTRIBUTE = 'convertFullHalf';
+const ATTRIBUTE = 'convertFullHalf';
 
-export default class ConvertFullHalf extends Plugin {
+class ConvertFullHalf extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -23,3 +23,5 @@ export default class ConvertFullHalf extends Plugin {
 		return 'ConvertFullHalf';
 	}
 }
+
+export { ATTRIBUTE, ConvertFullHalfUI, ConvertFullHalfEditing, ConvertFullHalf };

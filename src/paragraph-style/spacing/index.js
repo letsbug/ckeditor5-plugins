@@ -3,12 +3,12 @@
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
 
-import ParagraphSpacingEditing from './editing';
-import ParagraphSpacingUI from './ui';
+import { ParagraphSpacingEditing } from './editing';
+import { ParagraphSpacingUI } from './ui';
 
-export const ATTRIBUTE = 'paragraphSpacing';
+const ATTRIBUTE = 'paragraphSpacing';
 
-export default class ParagraphSpacing extends Plugin {
+class ParagraphSpacing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -23,3 +23,5 @@ export default class ParagraphSpacing extends Plugin {
 		return 'ParagraphSpacing';
 	}
 }
+
+export { ATTRIBUTE, ParagraphSpacingUI, ParagraphSpacingEditing, ParagraphSpacing };

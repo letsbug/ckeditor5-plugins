@@ -3,12 +3,12 @@
  */
 import { Plugin } from '@ckeditor/ckeditor5-core';
 
-import SoftBreakToEnterUI from './ui';
-import SoftBreakToEnterEditing from './editing';
+import { SoftBreakToEnterUI } from './ui';
+import { SoftBreakToEnterEditing } from './editing';
 
-export const ATTRIBUTE = 'softBreakToEnter';
+const ATTRIBUTE = 'softBreakToEnter';
 
-export default class SoftBreakToEnter extends Plugin {
+class SoftBreakToEnter extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -23,3 +23,5 @@ export default class SoftBreakToEnter extends Plugin {
 		return 'SoftBreakToEnter';
 	}
 }
+
+export { ATTRIBUTE, SoftBreakToEnterUI, SoftBreakToEnterEditing, SoftBreakToEnter };
