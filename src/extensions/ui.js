@@ -27,9 +27,21 @@ export class ExtensionsUI extends Plugin {
 			button.set({ label, icon, tooltip: true });
 
 			this.listenTo(button, 'execute', () => {
-				if (command) {
+				if (!command) {
+					console.warn(`[${name}] extension feature no callback configuration can be executed.`);
+					return;
+				}
+				const imageUtils = editor.plugins.get('ImageUtils');
+				if (!imageUtils.getClosestSelectedImageWidget(editor.editing.view.document.selection)) {
 					command.call(editor, editor.model.document.selection.getSelectedElement());
-				} else console.warn(`[${name}] extension feature no callback configuration can be executed.`);
+					return;
+				}
+
+				/**
+				 * 当光标处在 image caption 当中时，简单的通过 "editor.model.document.selection.getSelectedElement" 是无法获取图片元素的
+				 * 始终需要通过 imageUtils.getClosestSelectedImageElement 来获取实际的图片元素
+				 */
+				command.call(editor, imageUtils.getClosestSelectedImageElement(editor.model.document.selection));
 			});
 
 			return button;
