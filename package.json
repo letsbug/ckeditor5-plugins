@@ -1,6 +1,6 @@
 {
   "name": "@hlx/ckeditor5-plugins",
-  "version": "29.0.3",
+  "version": "29.2.0",
   "description": "custom ckeditor5 plugins (eg: indent first line, custom format, ad so on...)",
   "scripts": {
     "lint": "eslint --quiet '**/*.js' --fix",
@@ -29,22 +29,22 @@
   },
   "homepage": "https://github.com/letsbug/ckeditor5-plugins#readme",
   "peerDependencies": {
-    "@ckeditor/ckeditor5-core": "^29.0.0",
-    "@ckeditor/ckeditor5-engine": "^29.0.0",
-    "@ckeditor/ckeditor5-highlight": "^29.0.0",
-    "@ckeditor/ckeditor5-ui": "^29.0.0",
-    "@ckeditor/ckeditor5-upload": "^29.0.0",
-    "@ckeditor/ckeditor5-utils": "^29.0.0"
+    "@ckeditor/ckeditor5-core": "^29.2.0",
+    "@ckeditor/ckeditor5-engine": "^29.2.0",
+    "@ckeditor/ckeditor5-highlight": "^29.2.0",
+    "@ckeditor/ckeditor5-ui": "^29.2.0",
+    "@ckeditor/ckeditor5-upload": "^29.2.0",
+    "@ckeditor/ckeditor5-utils": "^29.2.0"
   },
   "devDependencies": {
-    "eslint": "^7.30.0",
+    "eslint": "^7.32.0",
     "eslint-config-ckeditor5": "^3.1.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "husky": "^7.0.1",
-    "lint-staged": "^11.0.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
     "lodash-es": "^4.17.21",
-    "svgo": "^2.3.1"
+    "svgo": "^2.5.0"
   },
   "engines": {
     "node": ">=8.0.0",
