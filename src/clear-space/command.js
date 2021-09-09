@@ -2,7 +2,7 @@
  * @module clear-space/command
  */
 import { Command } from '@ckeditor/ckeditor5-core';
-import { findFirst } from '../utils';
+import { findFirst, EXCLIDEBLOCK } from '../utils';
 
 // All white space characters except '\n'
 const empties = ' \\f\\r\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff';
@@ -104,7 +104,7 @@ export class ClearSpaceCommand extends Command {
 	 * @return {boolean}
 	 */
 	_executable(iterator) {
-		const first = findFirst(iterator, (item) => !(this._isEmpty(item) || this._exclude(item)) && this._has(item));
+		const first = findFirst(iterator, (item) => !(this._isEmpty(item) || this._exclude(item)) && this._has(item), EXCLIDEBLOCK);
 		return !!first;
 	}
 }

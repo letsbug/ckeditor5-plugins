@@ -3,7 +3,7 @@
  */
 import { Command } from '@ckeditor/ckeditor5-core';
 import { ATTRIBUTE } from './index';
-import { findFirst } from '../utils';
+import { findFirst, EXCLIDEBLOCK } from '../utils';
 
 /**
  * The indent-first command plugin.
@@ -15,7 +15,7 @@ export class IndentFirstCommand extends Command {
 	 * @inheritDoc
 	 */
 	refresh() {
-		const first = findFirst(this.editor.model.document.selection.getSelectedBlocks(), (item) => !this._exclude(item));
+		const first = findFirst(this.editor.model.document.selection.getSelectedBlocks(), (item) => !this._exclude(item), EXCLIDEBLOCK);
 		this.isEnabled = !!first && this._executable(this.editor.model.schema, first);
 
 		// 设置按钮状态

@@ -1,3 +1,4 @@
+export const EXCLIDEBLOCK = 'imageBlock';
 /**
  * Find the first successful validation object
  *
@@ -5,7 +6,7 @@
  * @param success
  * @returns {null|*}
  */
-export function findFirst(iterator, success) {
+ export function findFirst(iterator, success, nameBlock) {
 	const item = iterator.next();
 
 	if (item.done) {
@@ -13,6 +14,9 @@ export function findFirst(iterator, success) {
 	}
 
 	const value = item.value;
+	if(nameBlock && value.name === nameBlock) {
+		return findFirst(iterator, success, nameBlock);
+	}
 	if (success(value)) {
 		return value;
 	}
