@@ -104,7 +104,11 @@ export class ClearSpaceCommand extends Command {
 	 * @return {boolean}
 	 */
 	_executable(iterator) {
-		const first = findFirst(iterator, (item) => !(this._isEmpty(item) || this._exclude(item)) && this._has(item), EXCLIDEBLOCK);
+		const first = findFirst(
+			iterator,
+			(item) => !(this._isEmpty(item) || this._exclude(item)) && this._has(item),
+			EXCLIDEBLOCK
+		);
 		return !!first;
 	}
 }

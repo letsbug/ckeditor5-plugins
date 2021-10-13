@@ -15,7 +15,11 @@ export class IndentFirstCommand extends Command {
 	 * @inheritDoc
 	 */
 	refresh() {
-		const first = findFirst(this.editor.model.document.selection.getSelectedBlocks(), (item) => !this._exclude(item), EXCLIDEBLOCK);
+		const first = findFirst(
+			this.editor.model.document.selection.getSelectedBlocks(),
+			(item) => !this._exclude(item),
+			EXCLIDEBLOCK
+		);
 		this.isEnabled = !!first && this._executable(this.editor.model.schema, first);
 
 		// 设置按钮状态

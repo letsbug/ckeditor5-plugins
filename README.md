@@ -1,5 +1,5 @@
 # CKEditor5-plugins
-基于ckeditor5的，适用于自定义构建的插件包。要使用此插件包，则不建议直接使用官方的classic、document、inline、balloon等构建，建议自定义构建
+基于ckeditor5的，适用于自定义构建的插件包。要使用此插件包，则不建议直接使用官方的`classic`、`document`、`inline`、`balloon`等构建，建议自定义构建
 
 [![npm version](https://badge.fury.io/js/%40ckeditor%2Fckeditor5-build-classic.svg)](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic)
 [![Dependency Status](https://david-dm.org/letsbug/ckeditor5-plugins/status.svg)](https://david-dm.org/letsbug/ckeditor5-plugins)
@@ -159,7 +159,7 @@ const configs = {
   extensions
 }
 
-CKEDITOR.DocumentBuild.create(document.querySelector('.editor-body'), configs).then(editor => {
+HlxRichMce.BuildDecoupled.create(document.querySelector('.editor-body'), configs).then(editor => {
   document.querySelector('.editor-toolbar').appendChild(editor.ui.view.toolbar.element);
 });
 ```
