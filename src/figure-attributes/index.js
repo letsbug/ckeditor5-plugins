@@ -14,7 +14,7 @@ class FigureAttributes extends Plugin {
 	constructor(editor) {
 		super(editor);
 
-		this.options = this.editor.config.get('figureAttributes');
+		this.options = this.editor.config.get('figureAttributes') ?? {};
 	}
 
 	/**
@@ -27,11 +27,11 @@ class FigureAttributes extends Plugin {
 		const plugins = this.editor.plugins;
 		const { table, image } = this.options;
 
-		if (plugins.has('Table') && this._executable(table)) {
+		if (!!table && plugins.has('Table') && this._executable(table)) {
 			this._setupConversion('table', 'table', table);
 		}
 
-		if (this._executable(image)) {
+		if (image && this._executable(image)) {
 			if (plugins.has('ImageBlock')) {
 				this._setupConversion('img', 'imageBlock', image);
 			}
