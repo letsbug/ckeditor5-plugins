@@ -30,7 +30,7 @@
   "homepage": "https://github.com/letsbug/ckeditor5-plugins#readme",
   "peerDependencies": {
     "@ckeditor/ckeditor5-core": "32.0.0",
-    "@ckeditor/ckeditor5-engine": "31.0.0",
+    "@ckeditor/ckeditor5-engine": "31.1.0",
     "@ckeditor/ckeditor5-highlight": "31.0.0",
     "@ckeditor/ckeditor5-ui": "31.0.0",
     "@ckeditor/ckeditor5-upload": "31.0.0",
