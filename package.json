@@ -32,7 +32,7 @@
     "@ckeditor/ckeditor5-core": "32.0.0",
     "@ckeditor/ckeditor5-engine": "32.0.0",
     "@ckeditor/ckeditor5-highlight": "32.0.0",
-    "@ckeditor/ckeditor5-ui": "32.0.0",
+    "@ckeditor/ckeditor5-ui": "36.0.1",
     "@ckeditor/ckeditor5-upload": "32.0.0",
     "@ckeditor/ckeditor5-utils": "32.0.0"
   },
