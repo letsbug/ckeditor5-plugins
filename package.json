@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/letsbug/ckeditor5-plugins#readme",
   "peerDependencies": {
-    "@ckeditor/ckeditor5-core": "32.0.0",
+    "@ckeditor/ckeditor5-core": "39.0.2",
     "@ckeditor/ckeditor5-engine": "32.0.0",
     "@ckeditor/ckeditor5-highlight": "32.0.0",
     "@ckeditor/ckeditor5-ui": "32.0.0",
