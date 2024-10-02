@@ -29,12 +29,12 @@
   },
   "homepage": "https://github.com/letsbug/ckeditor5-plugins#readme",
   "peerDependencies": {
-    "@ckeditor/ckeditor5-core": "32.0.0",
-    "@ckeditor/ckeditor5-engine": "32.0.0",
-    "@ckeditor/ckeditor5-highlight": "32.0.0",
-    "@ckeditor/ckeditor5-ui": "32.0.0",
-    "@ckeditor/ckeditor5-upload": "32.0.0",
-    "@ckeditor/ckeditor5-utils": "32.0.0"
+    "@ckeditor/ckeditor5-core": "43.2.0",
+    "@ckeditor/ckeditor5-engine": "43.2.0",
+    "@ckeditor/ckeditor5-highlight": "43.2.0",
+    "@ckeditor/ckeditor5-ui": "43.2.0",
+    "@ckeditor/ckeditor5-upload": "43.2.0",
+    "@ckeditor/ckeditor5-utils": "43.2.0"
   },
   "devDependencies": {
     "eslint": "8.10.0",
