@@ -43,7 +43,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "husky": "7.0.4",
     "lint-staged": "12.3.5",
-    "lodash-es": "4.17.21",
+    "lodash-es": "4.18.1",
     "svgo": "2.8.0"
   },
   "engines": {
